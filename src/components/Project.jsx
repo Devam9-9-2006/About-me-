@@ -49,9 +49,8 @@ GitHub
 </a>
 
 <a
-href="https://vercel.com/"
+href="https://portfolio-about-me-rose.vercel.app/"
 target="_blank"
-
 >
 
 Live Demo
