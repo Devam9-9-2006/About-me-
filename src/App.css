@@ -1,0 +1,59 @@
+body{
+background:#050816;
+
+color:white;
+
+font-family:Arial;
+}
+
+.hero{
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+}
+
+.left h1{
+font-size:70px;
+}
+
+.left span{
+color:#4da6ff;
+}
+
+.left h3{
+margin-top:20px;
+
+font-size:30px;
+}
+
+.left p{
+margin-top:20px;
+
+color:#aaa;
+
+max-width:600px;
+}
+
+button{
+margin-top:30px;
+
+padding:15px 35px;
+
+border:none;
+
+border-radius:10px;
+
+background:#4da6ff;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+}
