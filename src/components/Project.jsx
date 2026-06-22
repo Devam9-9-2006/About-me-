@@ -176,7 +176,7 @@ GitHub
 
 <a
 
-href="https://portfolio-about-me-rose.vercel.app/"
+href="https://about-me-chi-roan.vercel.app/"
 
 target="_blank"
 
