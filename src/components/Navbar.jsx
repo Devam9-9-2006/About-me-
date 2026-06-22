@@ -1,48 +1,161 @@
-import './Navbar.css'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
-return ( <nav className="navbar">
-  <h2 className="logo">
-    DEVAM
-  </h2>
+return (
 
-  <ul className="nav-links">
+<nav
+className="
 
-    <li>
-      <Link to="/">
-        Home
-      </Link>
-    </li>
+fixed
+top-0
 
-    <li>
-      <Link to="/about">
-        About Me
-      </Link>
-    </li>
+left-0
 
-    <li>
-      <Link to="/education">
-        Education
-      </Link>
-    </li>
+w-full
 
-    <li>
-      <Link to="/experience">
-        Experience
-      </Link>
-    </li>
+px-10
 
-    <li>
-      <Link to="/projects">
-        Projects
-      </Link>
-    </li>
+py-5
 
-  </ul>
+flex
+
+justify-between
+
+items-center
+
+bg-black/20
+
+backdrop-blur-xl
+
+border-b
+
+border-white/10
+
+z-50
+
+text-white
+
+"
+
+>
+
+<h2
+className="
+
+text-3xl
+
+font-bold
+
+tracking-widest
+
+text-blue-400
+
+"
+
+>
+
+DEVAM
+
+</h2>
+
+<ul
+className="
+
+flex
+
+gap-10
+
+text-lg
+
+font-medium
+
+"
+
+>
+
+<li>
+
+<Link
+to="/"
+className="
+hover:text-blue-400
+duration-300
+"
+>
+
+Home
+
+</Link>
+
+</li>
+
+<li>
+
+<Link
+to="/about"
+className="
+hover:text-blue-400
+duration-300
+"
+>
+
+About Me
+
+</Link>
+
+</li>
+
+<li>
+
+<Link
+to="/education"
+className="
+hover:text-blue-400
+duration-300
+"
+>
+
+Education
+
+</Link>
+
+</li>
+
+<li>
+
+<Link
+to="/experience"
+className="
+hover:text-blue-400
+duration-300
+"
+>
+
+Experience
+
+</Link>
+
+</li>
+
+<li>
+
+<Link
+to="/projects"
+className="
+hover:text-blue-400
+duration-300
+"
+>
+
+Projects
+
+</Link>
+
+</li>
+
+</ul>
 
 </nav>
-
 
 )
 }

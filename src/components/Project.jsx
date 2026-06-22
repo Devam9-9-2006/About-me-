@@ -1,34 +1,106 @@
-import './Project.css'
-
 function Projects() {
 return (
 
-<section id="projects" className="projects">
+<section
+className="
 
-<div className="project-header">
+min-h-screen
 
-<p>MY WORK</p>
+bg-[#050816]
 
-<h1>
+text-white
+
+px-10
+
+md:px-24
+
+py-32
+
+"
+
+>
+
+<div className="text-center">
+
+<p
+className="
+text-blue-400
+tracking-[6px]
+"
+>
+
+MY WORK
+
+</p>
+
+<h1
+className="
+text-5xl
+md:text-7xl
+font-bold
+mt-5
+"
+>
+
 Featured
-<span> Projects</span>
+
+<span className="text-blue-400">
+
+Projects
+
+</span>
+
 </h1>
 
 </div>
 
-<div className="project-grid">
+<div
+className="
 
-<div className="project-card">
+grid
 
-<div className="project-number">
+grid-cols-1
+
+md:grid-cols-2
+
+xl:grid-cols-3
+
+gap-8
+
+mt-20
+
+"
+
+>
+
+<div
+className="
+
+bg-white/5
+
+backdrop-blur-xl
+
+rounded-[30px]
+
+p-10
+
+hover:-translate-y-4
+
+duration-500
+
+"
+
+>
+
+<div className="text-6xl text-blue-400/20">
 01
 </div>
 
-<h2>
+<h2 className="text-3xl mt-6">
 Portfolio Website
 </h2>
 
-<p>
+<p className="mt-6 text-gray-400">
 
 Modern portfolio website built
 using React with animations,
@@ -36,11 +108,17 @@ responsive design and premium UI.
 
 </p>
 
-<div className="buttons">
+<div className="flex gap-4 mt-10">
 
 <a
 href="https://github.com/Devam9-9-2006"
 target="_blank"
+className="
+bg-blue-500
+px-6
+py-3
+rounded-xl
+"
 
 >
 
@@ -51,6 +129,17 @@ GitHub
 <a
 href="https://portfolio-about-me-rose.vercel.app/"
 target="_blank"
+className="
+border
+border-blue-400
+
+px-6
+
+py-3
+
+rounded-xl
+"
+
 >
 
 Live Demo
@@ -61,29 +150,52 @@ Live Demo
 
 </div>
 
-<div className="project-card">
+<div
+className="
 
-<div className="project-number">
+bg-white/5
+
+backdrop-blur-xl
+
+rounded-[30px]
+
+p-10
+
+hover:-translate-y-4
+
+duration-500
+
+"
+
+>
+
+<div className="text-6xl text-blue-400/20">
 02
 </div>
 
-<h2>
+<h2 className="text-3xl mt-6">
 Startup Company Website
 </h2>
 
-<p>
+<p className="mt-6 text-gray-400">
 
-Premium futuristic defense
-information website with
-modern dashboard design.
+Modern startup website with
+responsive UI and premium
+business design.
 
 </p>
 
-<div className="buttons">
+<div className="flex gap-4 mt-10">
 
 <a
 href="https://github.com/Devam9-9-2006"
 target="_blank"
+className="
+bg-blue-500
+px-6
+py-3
+rounded-xl
+"
 
 >
 
@@ -94,6 +206,13 @@ GitHub
 <a
 href="https://elevate-labs-pied.vercel.app/"
 target="_blank"
+className="
+border
+border-blue-400
+px-6
+py-3
+rounded-xl
+"
 
 >
 
@@ -105,28 +224,52 @@ Live Demo
 
 </div>
 
-<div className="project-card">
+<div
+className="
 
-<div className="project-number">
+bg-white/5
+
+backdrop-blur-xl
+
+rounded-[30px]
+
+p-10
+
+hover:-translate-y-4
+
+duration-500
+
+"
+
+>
+
+<div className="text-6xl text-blue-400/20">
 03
 </div>
 
-<h2>
+<h2 className="text-3xl mt-6">
 Coffee Website
 </h2>
 
-<p>
+<p className="mt-6 text-gray-400">
 
-Interactive React website with
-modern UI and responsive pages.
+Interactive React website
+with modern animations and
+responsive design.
 
 </p>
 
-<div className="buttons">
+<div className="flex gap-4 mt-10">
 
 <a
 href="https://github.com/Devam9-9-2006"
 target="_blank"
+className="
+bg-blue-500
+px-6
+py-3
+rounded-xl
+"
 
 >
 
@@ -137,6 +280,13 @@ GitHub
 <a
 href="https://cafe-website-gkxschmuo-devam-999.vercel.app/"
 target="_blank"
+className="
+border
+border-blue-400
+px-6
+py-3
+rounded-xl
+"
 
 >
 

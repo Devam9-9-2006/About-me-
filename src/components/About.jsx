@@ -1,78 +1,342 @@
-import './About.css'
-
 function About() {
-  return (
-    <section id="about" className="about">
 
-      <div className="about-left">
+return (
 
-        <div className="profile-circle">
-          D
-        </div>
+<section
+className="
 
-      </div>
+min-h-screen
 
+bg-[#050816]
 
-      <div className="about-right">
+text-white
 
-        <p className="title">
-          ABOUT ME
-        </p>
+px-10
 
-        <h1>
-          Turning Ideas Into
-          <span> Modern Experiences</span>
-        </h1>
+lg:px-24
 
-        <p className="desc">
-     
+py-32
+
+flex
+
+flex-col
+
+lg:flex-row
+
+items-center
+
+justify-between
+
+gap-20
+
+"
+
+>
+
+<div
+className="
+
+w-full
+
+lg:w-[40%]
+
+flex
+
+justify-center
+
+"
+
+>
+
+<div
+className="
+
+w-[320px]
+
+h-[320px]
+
+rounded-full
+
+bg-gradient-to-br
+
+from-blue-500
+
+to-blue-900
+
+flex
+
+items-center
+
+justify-center
+
+text-[130px]
+
+font-bold
+
+shadow-[0_0_120px_rgba(59,130,246,.35)]
+
+"
+
+>
+
+D
+
+</div>
+
+</div>
+
+<div
+className="
+
+w-full
+
+lg:w-[60%]
+
+"
+
+>
+
+<p
+className="
+
+text-blue-400
+
+tracking-[6px]
+
+"
+
+>
+
+ABOUT ME
+
+</p>
+
+<h1
+className="
+
+text-5xl
+
+lg:text-7xl
+
+font-bold
+
+mt-6
+
+leading-tight
+
+"
+
+>
+
+Turning Ideas Into
+
+<span
+className="
+
+text-blue-400
+
+"
+
+>
+
+Modern Experiences
+
+</span>
+
+</h1>
+
+<p
+className="
+
+mt-10
+
+text-gray-400
+
+leading-10
+
+text-lg
+
+"
+
+>
 
 Hello, I'm Devam — a passionate
-B.Tech student specializing in Artificial
-Intelligence & Data Science with a strong
-interest in modern web development and UI
-engineering.
+B.Tech student specializing in
+Artificial Intelligence & Data Science
+with strong interest in frontend
+development and modern UI design.
 
-I enjoy transforming ideas into premium,
-interactive and user-focused digital
-experiences.
+I enjoy transforming ideas into
+interactive digital experiences and
+building premium user interfaces.
 
-My journey started with front-end
-development and expanded into React,
-JavaScript and intelligent technologies.
+My journey started from learning
+web technologies and expanded into
+React development, design systems
+and intelligent technologies.
 
-I continuously learn, build projects and
-experiment with creative interfaces that
-combine performance and aesthetics.
+I continuously improve through
+project building, experimentation and
+creative development.
 
-My goal is to become a developer capable of
-building impactful applications and solving
-real-world problems through technology..
-        </p>
+My goal is to become a developer
+capable of creating impactful digital
+products and solving real-world
+problems through technology.
 
-        <div className="cards">
+</p>
 
-          <div className="card">
-            <h3>Education</h3>
-            <p>B.Tech AI & DS</p>
-          </div>
+<div
+className="
 
-          <div className="card">
-            <h3>Experience</h3>
-            <p>Web Development</p>
-          </div>
+grid
 
-          <div className="card">
-            <h3>Projects</h3>
-            <p>Portfolio & React Apps</p>
-          </div>
+grid-cols-1
 
-        </div>
+md:grid-cols-3
 
-      </div>
+gap-6
 
-    </section>
-  )
+mt-16
+
+"
+
+>
+
+<div
+className="
+
+bg-white/5
+
+backdrop-blur-xl
+
+rounded-[30px]
+
+p-8
+
+hover:-translate-y-3
+
+duration-500
+
+"
+
+>
+
+<h3
+className="
+
+text-blue-400
+
+text-2xl
+
+"
+
+>
+
+🎓 Education
+
+</h3>
+
+<p className="mt-4">
+
+B.Tech AI & DS
+
+</p>
+
+</div>
+
+<div
+className="
+
+bg-white/5
+
+backdrop-blur-xl
+
+rounded-[30px]
+
+p-8
+
+hover:-translate-y-3
+
+duration-500
+
+"
+
+>
+
+<h3
+className="
+
+text-blue-400
+
+text-2xl
+
+"
+
+>
+
+💼 Experience
+
+</h3>
+
+<p className="mt-4">
+
+Web Development
+
+</p>
+
+</div>
+
+<div
+className="
+
+bg-white/5
+
+backdrop-blur-xl
+
+rounded-[30px]
+
+p-8
+
+hover:-translate-y-3
+
+duration-500
+
+"
+
+>
+
+<h3
+className="
+
+text-blue-400
+
+text-2xl
+
+"
+
+>
+
+🚀 Projects
+
+</h3>
+
+<p className="mt-4">
+
+Portfolio & React Apps
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+)
+
 }
 
 export default About

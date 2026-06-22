@@ -1,120 +1,379 @@
-import './Experience.css'
-
 function Experience() {
+
 return (
 
-<section id="experience" className="experience">
+<section
+className="
 
-<div className="exp-title">
+min-h-screen
 
-<p>MY EXPERIENCE</p>
+bg-[#050816]
 
-<h1>
-Experience &
-<span> Internship</span>
+text-white
+
+px-10
+
+lg:px-24
+
+py-32
+
+"
+
+>
+
+<div className="text-center">
+
+<p
+className="
+
+text-blue-400
+
+tracking-[6px]
+
+"
+
+>
+
+MY EXPERIENCE
+
+</p>
+
+<h1
+className="
+
+text-5xl
+
+lg:text-7xl
+
+font-bold
+
+mt-5
+
+"
+
+>
+
+Experience
+
+<span
+className="
+
+text-blue-400
+
+"
+
+>
+
+& Internship
+
+</span>
+
 </h1>
 
 </div>
 
-<div className="exp-container">
+<div
+className="
 
-<div className="exp-card">
+grid
 
-<div className="icon">
+grid-cols-1
+
+xl:grid-cols-2
+
+gap-10
+
+mt-20
+
+"
+
+>
+
+<div
+className="
+
+bg-white/5
+
+backdrop-blur-xl
+
+rounded-[30px]
+
+p-10
+
+border
+
+border-white/10
+
+hover:-translate-y-3
+
+duration-500
+
+"
+
+>
+
+<div className="text-6xl">
 💼
 </div>
 
-<h2>
+<h2
+className="
+
+text-4xl
+
+mt-6
+
+"
+
+>
+
 Web Development Internship
+
 </h2>
 
-<h4>
+<h4
+className="
+
+mt-4
+
+text-blue-400
+
+"
+
+>
+
 Frontend • React • UI Development
+
 </h4>
 
-<p>
+<p
+className="
 
-Completed practical training in web
-development with focus on building
-responsive and user-friendly websites.
+mt-8
 
-Worked with React concepts, reusable
-components and frontend structure.
+leading-9
 
-Improved understanding of real
-development workflows and debugging.
+text-gray-400
 
-Learned how to convert ideas into
-working interfaces while maintaining
-clean code and modern design practices.
+"
+
+>
+
+Completed practical training in
+modern web development with focus
+on building responsive interfaces,
+frontend architecture and premium
+user experiences.
+
+Worked with React components,
+clean UI structure and practical
+development workflows while
+improving debugging and design
+implementation skills.
 
 </p>
 
-<div className="skills">
+<div
+className="
 
-<span>React</span>
+flex
 
-<span>HTML</span>
+gap-3
 
-<span>CSS</span>
+flex-wrap
 
-<span>JavaScript</span>
+mt-10
 
-<span>Responsive UI</span>
+"
 
-<span>Debugging</span>
+>
+
+{
+
+[
+'React',
+'HTML',
+'CSS',
+'JavaScript',
+'Responsive UI',
+'Debugging'
+
+]
+
+.map((skill)=>(
+
+<span
+
+key={skill}
+
+className="
+
+px-5
+
+py-3
+
+rounded-full
+
+bg-blue-500/15
+
+text-blue-300
+
+"
+
+>
+
+{skill}
+
+</span>
+
+))
+
+}
 
 </div>
 
 </div>
 
-<div className="exp-card">
+<div
+className="
 
-<div className="icon">
+bg-white/5
+
+backdrop-blur-xl
+
+rounded-[30px]
+
+p-10
+
+border
+
+border-white/10
+
+hover:-translate-y-3
+
+duration-500
+
+"
+
+>
+
+<div className="text-6xl">
 🚀
 </div>
 
-<h2>
+<h2
+className="
+
+text-4xl
+
+mt-6
+
+"
+
+>
+
 Fresher Developer Journey
+
 </h2>
 
-<h4>
+<h4
+className="
+
+mt-4
+
+text-blue-400
+
+"
+
+>
+
 Learning • Building • Growing
+
 </h4>
 
-<p>
+<p
+className="
 
-Actively developing personal and
+mt-8
+
+leading-9
+
+text-gray-400
+
+"
+
+>
+
+Actively creating personal and
 academic projects to strengthen
-practical experience.
+real-world experience.
 
-Exploring modern frontend
-development, UI design and
-creative problem solving.
+Focused on frontend engineering,
+modern UI systems, project building
+and continuous improvement through
+hands-on development.
 
-Continuously improving technical
-knowledge through experimentation,
-project building and self-learning.
-
-Focused on creating premium user
-experiences and production-ready
-interfaces.
+Building strong foundations for a
+professional software career.
 
 </p>
 
-<div className="skills">
+<div
+className="
 
-<span>React</span>
+flex
 
-<span>Portfolio</span>
+gap-3
 
-<span>Projects</span>
+flex-wrap
 
-<span>Problem Solving</span>
+mt-10
 
-<span>UI Design</span>
+"
 
-<span>AI Learning</span>
+>
+
+{
+
+[
+'Portfolio',
+'Projects',
+'Problem Solving',
+'UI Design',
+'AI Learning',
+'Growth'
+
+]
+
+.map((skill)=>(
+
+<span
+
+key={skill}
+
+className="
+
+px-5
+
+py-3
+
+rounded-full
+
+bg-blue-500/15
+
+text-blue-300
+
+"
+
+>
+
+{skill}
+
+</span>
+
+))
+
+}
 
 </div>
 
@@ -125,6 +384,7 @@ interfaces.
 </section>
 
 )
+
 }
 
 export default Experience
