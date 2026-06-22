@@ -1,5 +1,3 @@
-import './App.css'
-
 import {
 BrowserRouter,
 Routes,
@@ -13,14 +11,19 @@ import Home from './components/Home'
 import About from './components/About'
 import Education from './components/Education'
 import Experience from './components/Experience'
-import Project from './components/Project'
+import Projects from './components/Projects'
 
 function App() {
+
 return (
 
 <BrowserRouter>
 
+<div className="overflow-x-hidden">
+
 <Navbar />
+
+<div className="pt-24">
 
 <Routes>
 
@@ -46,14 +49,19 @@ element={<Experience />}
 
 <Route
 path="/projects"
-element={<Project />}
+element={<Projects />}
 />
 
 </Routes>
 
+</div>
+
+</div>
+
 </BrowserRouter>
 
 )
+
 }
 
 export default App
