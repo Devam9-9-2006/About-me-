@@ -61,6 +61,8 @@ tracking-widest
 
 text-blue-400
 
+cursor-pointer
+
 "
 
 >
@@ -183,6 +185,36 @@ duration-300
 >
 
 Projects
+
+</Link>
+
+</li>
+
+<li>
+
+<Link
+
+to="/contact"
+
+className="
+
+bg-blue-500
+
+px-5
+
+py-2
+
+rounded-full
+
+hover:bg-blue-600
+
+duration-300
+
+"
+
+>
+
+Contact
 
 </Link>
 
