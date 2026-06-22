@@ -2,8 +2,7 @@ import {
 BrowserRouter,
 Routes,
 Route
-}
-from 'react-router-dom'
+} from 'react-router-dom'
 
 import Navbar from './components/Navbar'
 
@@ -11,7 +10,7 @@ import Home from './components/Home'
 import About from './components/About'
 import Education from './components/Education'
 import Experience from './components/Experience'
-import Projects from './components/Projects'
+import Project from './components/Project'
 
 function App() {
 
@@ -19,11 +18,31 @@ return (
 
 <BrowserRouter>
 
-<div className="overflow-x-hidden">
+<div
+className="
+
+min-h-screen
+
+overflow-x-hidden
+
+bg-[#050816]
+
+"
+
+>
 
 <Navbar />
 
-<div className="pt-24">
+<div
+className="
+
+pt-28
+
+md:pt-24
+
+"
+
+>
 
 <Routes>
 
@@ -49,7 +68,7 @@ element={<Experience />}
 
 <Route
 path="/projects"
-element={<Projects />}
+element={<Project />}
 />
 
 </Routes>
