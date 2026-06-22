@@ -57,3 +57,18 @@ font-size:18px;
 
 cursor:pointer;
 }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#050816;
+overflow-x:hidden;
+font-family:Arial;
+}

@@ -142,3 +142,39 @@ line-height:1.8;
 color:#9ca3af;
 
 }
+@media (max-width:768px){
+
+.about,
+.education,
+.experience,
+.projects{
+
+padding:100px 25px;
+
+}
+
+.cards,
+.resume-grid,
+.project-grid,
+.exp-container{
+
+grid-template-columns:1fr;
+
+display:grid;
+
+}
+
+.about{
+
+flex-direction:column;
+
+}
+
+.about-left,
+.about-right{
+
+width:100%;
+
+}
+
+}
