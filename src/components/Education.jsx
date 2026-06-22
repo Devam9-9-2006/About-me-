@@ -1,8 +1,27 @@
 function Education() {
 
+const diplomaSkills = [
+'HTML',
+'CSS',
+'JavaScript',
+'React',
+'Database',
+'Programming'
+]
+
+const degreeSkills = [
+'AI',
+'Data Science',
+'Python',
+'Machine Learning',
+'React',
+'Frontend'
+]
+
 return (
 
 <section
+
 className="
 
 min-h-screen
@@ -11,7 +30,9 @@ bg-[#050816]
 
 text-white
 
-px-10
+px-6
+
+md:px-10
 
 lg:px-24
 
@@ -24,11 +45,14 @@ py-32
 <div className="text-center">
 
 <p
+
 className="
 
 text-blue-400
 
 tracking-[6px]
+
+text-sm
 
 "
 
@@ -39,9 +63,12 @@ ACADEMIC JOURNEY
 </p>
 
 <h1
+
 className="
 
 text-5xl
+
+md:text-6xl
 
 lg:text-7xl
 
@@ -55,14 +82,7 @@ mt-5
 
 My
 
-<span
-className="
-
-text-blue-400
-
-"
-
->
+<span className="text-blue-400">
 
 Education
 
@@ -73,11 +93,12 @@ Education
 </div>
 
 <div
+
 className="
 
 relative
 
-mt-24
+mt-20
 
 space-y-10
 
@@ -86,7 +107,12 @@ space-y-10
 >
 
 <div
+
 className="
+
+hidden
+
+xl:block
 
 absolute
 
@@ -94,21 +120,18 @@ left-1/2
 
 top-0
 
-hidden
-
-lg:block
-
-w-[3px]
+w-[2px]
 
 h-full
 
-bg-blue-500/30
+bg-blue-500/20
 
 "
 
 > </div>
 
 <div
+
 className="
 
 bg-white/5
@@ -121,11 +144,13 @@ border-white/10
 
 rounded-[30px]
 
-p-10
+p-8
 
-lg:w-[46%]
+md:p-10
 
-hover:-translate-y-3
+xl:w-[46%]
+
+hover:-translate-y-2
 
 duration-500
 
@@ -133,12 +158,11 @@ duration-500
 
 >
 
-<div
+<p
+
 className="
 
 text-blue-400
-
-mb-5
 
 "
 
@@ -146,12 +170,17 @@ mb-5
 
 2022 — 2025
 
-</div>
+</p>
 
 <h2
+
 className="
 
-text-4xl
+text-3xl
+
+md:text-4xl
+
+mt-5
 
 "
 
@@ -162,9 +191,10 @@ Diploma in Computer Engineering
 </h2>
 
 <h4
+
 className="
 
-mt-5
+mt-4
 
 text-gray-300
 
@@ -177,40 +207,42 @@ LJ Polytechnic
 </h4>
 
 <p
+
 className="
 
 mt-8
 
-text-gray-400
+leading-8
 
-leading-9
+text-gray-400
 
 "
 
 >
 
 Built strong foundations in
-programming, frontend technologies,
-software development and problem
-solving.
+programming, frontend
+development, software
+engineering and practical
+technical implementation.
 
-Worked on practical projects while
-learning application development,
-database concepts and technical
-implementation.
+Worked on academic projects
+while improving development
+and problem-solving skills.
 
 </p>
 
 <div
+
 className="
 
 flex
 
+flex-wrap
+
 gap-3
 
-mt-8
-
-flex-wrap
+mt-10
 
 "
 
@@ -218,27 +250,13 @@ flex-wrap
 
 {
 
-[
-'HTML',
-'CSS',
-'JavaScript',
-'React',
-'Database',
-'Programming'
-
-]
-
-.map((item)=>(
+diplomaSkills.map((skill)=>(
 
 <span
 
-key={item}
+key={skill}
 
 className="
-
-bg-blue-500/15
-
-text-blue-300
 
 px-5
 
@@ -246,11 +264,17 @@ py-3
 
 rounded-full
 
+bg-blue-500/15
+
+text-blue-300
+
+text-sm
+
 "
 
 >
 
-{item}
+{skill}
 
 </span>
 
@@ -263,6 +287,7 @@ rounded-full
 </div>
 
 <div
+
 className="
 
 bg-white/5
@@ -275,13 +300,15 @@ border-white/10
 
 rounded-[30px]
 
-p-10
+p-8
 
-lg:ml-auto
+md:p-10
 
-lg:w-[46%]
+xl:ml-auto
 
-hover:-translate-y-3
+xl:w-[46%]
+
+hover:-translate-y-2
 
 duration-500
 
@@ -289,12 +316,11 @@ duration-500
 
 >
 
-<div
+<p
+
 className="
 
 text-blue-400
-
-mb-5
 
 "
 
@@ -302,12 +328,17 @@ mb-5
 
 Continuing
 
-</div>
+</p>
 
 <h2
+
 className="
 
-text-4xl
+text-3xl
+
+md:text-4xl
+
+mt-5
 
 "
 
@@ -318,9 +349,10 @@ B.Tech — AI & Data Science
 </h2>
 
 <h4
+
 className="
 
-mt-5
+mt-4
 
 text-gray-300
 
@@ -333,41 +365,41 @@ JG University
 </h4>
 
 <p
+
 className="
 
 mt-8
 
-text-gray-400
+leading-8
 
-leading-9
+text-gray-400
 
 "
 
 >
 
 Currently exploring Artificial
-Intelligence, Data Science,
-modern software development
-and building practical
-industry-level projects.
+Intelligence, Data Science and
+modern software technologies.
 
-Focused on learning technologies
-that combine innovation,
-problem solving and real-world
-implementation.
+Focused on building practical
+knowledge through projects,
+learning and industry-ready
+development.
 
 </p>
 
 <div
+
 className="
 
 flex
 
+flex-wrap
+
 gap-3
 
-mt-8
-
-flex-wrap
+mt-10
 
 "
 
@@ -375,27 +407,13 @@ flex-wrap
 
 {
 
-[
-'AI',
-'Data Science',
-'Python',
-'Machine Learning',
-'React',
-'Frontend'
-
-]
-
-.map((item)=>(
+degreeSkills.map((skill)=>(
 
 <span
 
-key={item}
+key={skill}
 
 className="
-
-bg-blue-500/15
-
-text-blue-300
 
 px-5
 
@@ -403,11 +421,17 @@ py-3
 
 rounded-full
 
+bg-blue-500/15
+
+text-blue-300
+
+text-sm
+
 "
 
 >
 
-{item}
+{skill}
 
 </span>
 

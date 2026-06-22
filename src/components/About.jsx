@@ -1,8 +1,27 @@
 function About() {
 
+const cards = [
+{
+icon:'🎓',
+title:'Education',
+value:'B.Tech AI & DS'
+},
+{
+icon:'💼',
+title:'Experience',
+value:'Web Development'
+},
+{
+icon:'🚀',
+title:'Projects',
+value:'Portfolio & React Apps'
+}
+]
+
 return (
 
 <section
+
 className="
 
 min-h-screen
@@ -11,7 +30,9 @@ bg-[#050816]
 
 text-white
 
-px-10
+px-6
+
+md:px-10
 
 lg:px-24
 
@@ -34,6 +55,7 @@ gap-20
 >
 
 <div
+
 className="
 
 w-full
@@ -49,11 +71,16 @@ justify-center
 >
 
 <div
+
 className="
 
-w-[320px]
+w-[240px]
 
-h-[320px]
+h-[240px]
+
+md:w-[320px]
+
+md:h-[320px]
 
 rounded-full
 
@@ -69,11 +96,17 @@ items-center
 
 justify-center
 
-text-[130px]
+text-[90px]
+
+md:text-[130px]
 
 font-bold
 
 shadow-[0_0_120px_rgba(59,130,246,.35)]
+
+hover:scale-105
+
+duration-500
 
 "
 
@@ -86,6 +119,7 @@ D
 </div>
 
 <div
+
 className="
 
 w-full
@@ -97,11 +131,14 @@ lg:w-[60%]
 >
 
 <p
+
 className="
 
 text-blue-400
 
 tracking-[6px]
+
+text-sm
 
 "
 
@@ -112,9 +149,12 @@ ABOUT ME
 </p>
 
 <h1
+
 className="
 
 text-5xl
+
+md:text-6xl
 
 lg:text-7xl
 
@@ -130,14 +170,7 @@ leading-tight
 
 Turning Ideas Into
 
-<span
-className="
-
-text-blue-400
-
-"
-
->
+<span className="text-blue-400">
 
 Modern Experiences
 
@@ -146,15 +179,20 @@ Modern Experiences
 </h1>
 
 <p
+
 className="
 
 mt-10
 
 text-gray-400
 
-leading-10
+leading-8
 
-text-lg
+md:leading-10
+
+text-base
+
+md:text-lg
 
 "
 
@@ -164,36 +202,38 @@ Hello, I'm Devam — a passionate
 B.Tech student specializing in
 Artificial Intelligence & Data Science
 with strong interest in frontend
-development and modern UI design.
+development and modern UI.
 
-I enjoy transforming ideas into
-interactive digital experiences and
-building premium user interfaces.
+I enjoy creating premium digital
+experiences and transforming ideas
+into modern interfaces.
 
-My journey started from learning
-web technologies and expanded into
-React development, design systems
-and intelligent technologies.
+My journey expanded from web
+technologies into React, design
+systems and intelligent solutions.
 
 I continuously improve through
-project building, experimentation and
-creative development.
+learning, projects and practical
+development.
 
 My goal is to become a developer
-capable of creating impactful digital
-products and solving real-world
-problems through technology.
+capable of building impactful
+technology and solving real-world
+problems.
 
 </p>
 
 <div
+
 className="
 
 grid
 
 grid-cols-1
 
-md:grid-cols-3
+md:grid-cols-2
+
+xl:grid-cols-3
 
 gap-6
 
@@ -203,7 +243,14 @@ mt-16
 
 >
 
+{
+
+cards.map((card)=>(
+
 <div
+
+key={card.title}
+
 className="
 
 bg-white/5
@@ -214,7 +261,11 @@ rounded-[30px]
 
 p-8
 
-hover:-translate-y-3
+border
+
+border-white/10
+
+hover:-translate-y-2
 
 duration-500
 
@@ -223,6 +274,7 @@ duration-500
 >
 
 <h3
+
 className="
 
 text-blue-400
@@ -233,101 +285,35 @@ text-2xl
 
 >
 
-🎓 Education
+{card.icon}
+
+{' '}
+
+{card.title}
 
 </h3>
 
-<p className="mt-4">
+<p
 
-B.Tech AI & DS
+className="
+
+mt-5
+
+text-gray-300
+
+"
+
+>
+
+{card.value}
 
 </p>
 
 </div>
 
-<div
-className="
+))
 
-bg-white/5
-
-backdrop-blur-xl
-
-rounded-[30px]
-
-p-8
-
-hover:-translate-y-3
-
-duration-500
-
-"
-
->
-
-<h3
-className="
-
-text-blue-400
-
-text-2xl
-
-"
-
->
-
-💼 Experience
-
-</h3>
-
-<p className="mt-4">
-
-Web Development
-
-</p>
-
-</div>
-
-<div
-className="
-
-bg-white/5
-
-backdrop-blur-xl
-
-rounded-[30px]
-
-p-8
-
-hover:-translate-y-3
-
-duration-500
-
-"
-
->
-
-<h3
-className="
-
-text-blue-400
-
-text-2xl
-
-"
-
->
-
-🚀 Projects
-
-</h3>
-
-<p className="mt-4">
-
-Portfolio & React Apps
-
-</p>
-
-</div>
+}
 
 </div>
 

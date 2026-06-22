@@ -1,23 +1,31 @@
 import { Link } from 'react-router-dom'
 
 function Navbar() {
+
 return (
 
 <nav
+
 className="
 
 fixed
 top-0
-
 left-0
 
 w-full
 
-px-10
+px-6
+md:px-10
+lg:px-24
 
 py-5
 
 flex
+
+flex-col
+md:flex-row
+
+gap-5
 
 justify-between
 
@@ -40,9 +48,12 @@ text-white
 >
 
 <h2
+
 className="
 
-text-3xl
+text-2xl
+
+md:text-3xl
 
 font-bold
 
@@ -59,13 +70,22 @@ DEVAM
 </h2>
 
 <ul
+
 className="
 
 flex
 
-gap-10
+flex-wrap
 
-text-lg
+justify-center
+
+gap-5
+
+md:gap-10
+
+text-sm
+
+md:text-lg
 
 font-medium
 
@@ -76,11 +96,14 @@ font-medium
 <li>
 
 <Link
+
 to="/"
+
 className="
 hover:text-blue-400
 duration-300
 "
+
 >
 
 Home
@@ -92,11 +115,14 @@ Home
 <li>
 
 <Link
+
 to="/about"
+
 className="
 hover:text-blue-400
 duration-300
 "
+
 >
 
 About Me
@@ -108,11 +134,14 @@ About Me
 <li>
 
 <Link
+
 to="/education"
+
 className="
 hover:text-blue-400
 duration-300
 "
+
 >
 
 Education
@@ -124,11 +153,14 @@ Education
 <li>
 
 <Link
+
 to="/experience"
+
 className="
 hover:text-blue-400
 duration-300
 "
+
 >
 
 Experience
@@ -140,11 +172,14 @@ Experience
 <li>
 
 <Link
+
 to="/projects"
+
 className="
 hover:text-blue-400
 duration-300
 "
+
 >
 
 Projects
@@ -158,6 +193,7 @@ Projects
 </nav>
 
 )
+
 }
 
 export default Navbar

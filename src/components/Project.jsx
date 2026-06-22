@@ -1,7 +1,9 @@
 function Projects() {
+
 return (
 
 <section
+
 className="
 
 min-h-screen
@@ -10,9 +12,11 @@ bg-[#050816]
 
 text-white
 
-px-10
+px-6
 
-md:px-24
+md:px-12
+
+lg:px-24
 
 py-32
 
@@ -35,11 +39,19 @@ MY WORK
 
 <h1
 className="
+
 text-5xl
-md:text-7xl
+
+md:text-6xl
+
+lg:text-7xl
+
 font-bold
+
 mt-5
+
 "
+
 >
 
 Featured
@@ -55,6 +67,7 @@ Projects
 </div>
 
 <div
+
 className="
 
 grid
@@ -74,6 +87,7 @@ mt-20
 >
 
 <div
+
 className="
 
 bg-white/5
@@ -82,25 +96,31 @@ backdrop-blur-xl
 
 rounded-[30px]
 
-p-10
+p-8
 
-hover:-translate-y-4
+hover:-translate-y-3
 
 duration-500
+
+border
+
+border-white/10
 
 "
 
 >
 
-<div className="text-6xl text-blue-400/20">
+<div className="text-5xl text-blue-400/20">
 01
 </div>
 
 <h2 className="text-3xl mt-6">
+
 Portfolio Website
+
 </h2>
 
-<p className="mt-6 text-gray-400">
+<p className="mt-6 text-gray-400 leading-8">
 
 Modern portfolio website built
 using React with animations,
@@ -108,16 +128,44 @@ responsive design and premium UI.
 
 </p>
 
-<div className="flex gap-4 mt-10">
+<div
+
+className="
+
+flex
+
+flex-col
+
+sm:flex-row
+
+gap-4
+
+mt-10
+
+"
+
+>
 
 <a
+
 href="https://github.com/Devam9-9-2006"
+
 target="_blank"
+
 className="
+
 bg-blue-500
-px-6
+
+text-center
+
 py-3
+
 rounded-xl
+
+hover:scale-105
+
+duration-300
+
 "
 
 >
@@ -127,17 +175,27 @@ GitHub
 </a>
 
 <a
+
 href="https://portfolio-about-me-rose.vercel.app/"
+
 target="_blank"
+
 className="
+
 border
+
 border-blue-400
 
-px-6
+text-center
 
 py-3
 
 rounded-xl
+
+hover:bg-blue-500
+
+duration-300
+
 "
 
 >
@@ -151,6 +209,7 @@ Live Demo
 </div>
 
 <div
+
 className="
 
 bg-white/5
@@ -159,42 +218,76 @@ backdrop-blur-xl
 
 rounded-[30px]
 
-p-10
+p-8
 
-hover:-translate-y-4
+hover:-translate-y-3
 
 duration-500
+
+border
+
+border-white/10
 
 "
 
 >
 
-<div className="text-6xl text-blue-400/20">
+<div className="text-5xl text-blue-400/20">
 02
 </div>
 
 <h2 className="text-3xl mt-6">
+
 Startup Company Website
+
 </h2>
 
-<p className="mt-6 text-gray-400">
+<p className="mt-6 text-gray-400 leading-8">
 
-Modern startup website with
-responsive UI and premium
-business design.
+Premium business website with
+responsive design and modern
+UI experience.
 
 </p>
 
-<div className="flex gap-4 mt-10">
+<div
+
+className="
+
+flex
+
+flex-col
+
+sm:flex-row
+
+gap-4
+
+mt-10
+
+"
+
+>
 
 <a
+
 href="https://github.com/Devam9-9-2006"
+
 target="_blank"
+
 className="
+
 bg-blue-500
-px-6
+
+text-center
+
 py-3
+
 rounded-xl
+
+hover:scale-105
+
+duration-300
+
 "
 
 >
@@ -204,14 +297,27 @@ GitHub
 </a>
 
 <a
+
 href="https://elevate-labs-pied.vercel.app/"
+
 target="_blank"
+
 className="
+
 border
+
 border-blue-400
-px-6
+
+text-center
+
 py-3
+
 rounded-xl
+
+hover:bg-blue-500
+
+duration-300
+
 "
 
 >
@@ -225,6 +331,7 @@ Live Demo
 </div>
 
 <div
+
 className="
 
 bg-white/5
@@ -233,42 +340,76 @@ backdrop-blur-xl
 
 rounded-[30px]
 
-p-10
+p-8
 
-hover:-translate-y-4
+hover:-translate-y-3
 
 duration-500
+
+border
+
+border-white/10
 
 "
 
 >
 
-<div className="text-6xl text-blue-400/20">
+<div className="text-5xl text-blue-400/20">
 03
 </div>
 
 <h2 className="text-3xl mt-6">
+
 Coffee Website
+
 </h2>
 
-<p className="mt-6 text-gray-400">
+<p className="mt-6 text-gray-400 leading-8">
 
-Interactive React website
-with modern animations and
+Interactive React website with
+smooth animations and fully
 responsive design.
 
 </p>
 
-<div className="flex gap-4 mt-10">
+<div
+
+className="
+
+flex
+
+flex-col
+
+sm:flex-row
+
+gap-4
+
+mt-10
+
+"
+
+>
 
 <a
+
 href="https://github.com/Devam9-9-2006"
+
 target="_blank"
+
 className="
+
 bg-blue-500
-px-6
+
+text-center
+
 py-3
+
 rounded-xl
+
+hover:scale-105
+
+duration-300
+
 "
 
 >
@@ -278,14 +419,27 @@ GitHub
 </a>
 
 <a
+
 href="https://cafe-website-gkxschmuo-devam-999.vercel.app/"
+
 target="_blank"
+
 className="
+
 border
+
 border-blue-400
-px-6
+
+text-center
+
 py-3
+
 rounded-xl
+
+hover:bg-blue-500
+
+duration-300
+
 "
 
 >
@@ -303,6 +457,7 @@ Live Demo
 </section>
 
 )
+
 }
 
 export default Projects

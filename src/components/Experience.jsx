@@ -1,8 +1,27 @@
 function Experience() {
 
+const internshipSkills = [
+'React',
+'HTML',
+'CSS',
+'JavaScript',
+'Responsive UI',
+'Debugging'
+]
+
+const fresherSkills = [
+'Portfolio',
+'Projects',
+'Problem Solving',
+'UI Design',
+'AI Learning',
+'Growth'
+]
+
 return (
 
 <section
+
 className="
 
 min-h-screen
@@ -11,7 +30,9 @@ bg-[#050816]
 
 text-white
 
-px-10
+px-6
+
+md:px-10
 
 lg:px-24
 
@@ -24,11 +45,14 @@ py-32
 <div className="text-center">
 
 <p
+
 className="
 
 text-blue-400
 
 tracking-[6px]
+
+text-sm
 
 "
 
@@ -39,9 +63,12 @@ MY EXPERIENCE
 </p>
 
 <h1
+
 className="
 
 text-5xl
+
+md:text-6xl
 
 lg:text-7xl
 
@@ -55,14 +82,7 @@ mt-5
 
 Experience
 
-<span
-className="
-
-text-blue-400
-
-"
-
->
+<span className="text-blue-400">
 
 & Internship
 
@@ -73,6 +93,7 @@ text-blue-400
 </div>
 
 <div
+
 className="
 
 grid
@@ -81,7 +102,7 @@ grid-cols-1
 
 xl:grid-cols-2
 
-gap-10
+gap-8
 
 mt-20
 
@@ -90,6 +111,7 @@ mt-20
 >
 
 <div
+
 className="
 
 bg-white/5
@@ -98,13 +120,15 @@ backdrop-blur-xl
 
 rounded-[30px]
 
-p-10
+p-8
+
+md:p-10
 
 border
 
 border-white/10
 
-hover:-translate-y-3
+hover:-translate-y-2
 
 duration-500
 
@@ -112,14 +136,17 @@ duration-500
 
 >
 
-<div className="text-6xl">
+<div className="text-5xl">
 💼
 </div>
 
 <h2
+
 className="
 
-text-4xl
+text-3xl
+
+md:text-4xl
 
 mt-6
 
@@ -132,6 +159,7 @@ Web Development Internship
 </h2>
 
 <h4
+
 className="
 
 mt-4
@@ -147,11 +175,12 @@ Frontend • React • UI Development
 </h4>
 
 <p
+
 className="
 
 mt-8
 
-leading-9
+leading-8
 
 text-gray-400
 
@@ -160,27 +189,25 @@ text-gray-400
 >
 
 Completed practical training in
-modern web development with focus
-on building responsive interfaces,
-frontend architecture and premium
-user experiences.
+modern web development focused
+on responsive websites, UI design
+and frontend architecture.
 
-Worked with React components,
-clean UI structure and practical
-development workflows while
-improving debugging and design
-implementation skills.
+Worked with reusable React
+components and improved real
+development workflow experience.
 
 </p>
 
 <div
+
 className="
 
 flex
 
-gap-3
-
 flex-wrap
+
+gap-3
 
 mt-10
 
@@ -190,17 +217,7 @@ mt-10
 
 {
 
-[
-'React',
-'HTML',
-'CSS',
-'JavaScript',
-'Responsive UI',
-'Debugging'
-
-]
-
-.map((skill)=>(
+internshipSkills.map((skill)=>(
 
 <span
 
@@ -217,6 +234,8 @@ rounded-full
 bg-blue-500/15
 
 text-blue-300
+
+text-sm
 
 "
 
@@ -235,6 +254,7 @@ text-blue-300
 </div>
 
 <div
+
 className="
 
 bg-white/5
@@ -243,13 +263,15 @@ backdrop-blur-xl
 
 rounded-[30px]
 
-p-10
+p-8
+
+md:p-10
 
 border
 
 border-white/10
 
-hover:-translate-y-3
+hover:-translate-y-2
 
 duration-500
 
@@ -257,14 +279,17 @@ duration-500
 
 >
 
-<div className="text-6xl">
+<div className="text-5xl">
 🚀
 </div>
 
 <h2
+
 className="
 
-text-4xl
+text-3xl
+
+md:text-4xl
 
 mt-6
 
@@ -277,6 +302,7 @@ Fresher Developer Journey
 </h2>
 
 <h4
+
 className="
 
 mt-4
@@ -292,11 +318,12 @@ Learning • Building • Growing
 </h4>
 
 <p
+
 className="
 
 mt-8
 
-leading-9
+leading-8
 
 text-gray-400
 
@@ -304,28 +331,26 @@ text-gray-400
 
 >
 
-Actively creating personal and
-academic projects to strengthen
-real-world experience.
+Building personal and academic
+projects while continuously
+improving development skills.
 
-Focused on frontend engineering,
-modern UI systems, project building
-and continuous improvement through
-hands-on development.
-
-Building strong foundations for a
-professional software career.
+Focused on creating modern UI,
+learning frontend technologies
+and preparing for professional
+software opportunities.
 
 </p>
 
 <div
+
 className="
 
 flex
 
-gap-3
-
 flex-wrap
+
+gap-3
 
 mt-10
 
@@ -335,17 +360,7 @@ mt-10
 
 {
 
-[
-'Portfolio',
-'Projects',
-'Problem Solving',
-'UI Design',
-'AI Learning',
-'Growth'
-
-]
-
-.map((skill)=>(
+fresherSkills.map((skill)=>(
 
 <span
 
@@ -362,6 +377,8 @@ rounded-full
 bg-blue-500/15
 
 text-blue-300
+
+text-sm
 
 "
 
