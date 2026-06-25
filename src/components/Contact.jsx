@@ -1,25 +1,41 @@
 import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
 
 function Contact() {
 
-const form = useRef()
+const formRef = useRef()
 
 const [loading,setLoading]=useState(false)
 
-const sendEmail=(e)=>{
+const schema=Yup.object({
 
-e.preventDefault()
+name:Yup.string()
+.min(2,'Too Short')
+.required('Name Required'),
+
+email:Yup.string()
+.email('Invalid Email')
+.required('Email Required'),
+
+message:Yup.string()
+.min(10,'Minimum 10 characters')
+.required('Message Required')
+
+})
+
+const sendEmail=(values,{resetForm})=>{
 
 setLoading(true)
 
-emailjs.sendForm(
+emailjs.send(
 
 'service_yy75hoc',
 
 'template_wvnq57b',
 
-form.current,
+values,
 
 'x73vCMhTIiOHpC2J0'
 
@@ -29,17 +45,15 @@ form.current,
 
 alert('Message Sent Successfully ✅')
 
-form.current.reset()
+resetForm()
 
 setLoading(false)
 
 })
 
-.catch((error)=>{
+.catch(()=>{
 
-console.log(error)
-
-alert('Failed To Send Message ❌')
+alert('Failed To Send ❌')
 
 setLoading(false)
 
@@ -50,7 +64,6 @@ setLoading(false)
 return (
 
 <section
-
 className="
 
 min-h-screen
@@ -61,9 +74,7 @@ text-white
 
 px-6
 
-md:px-10
-
-lg:px-24
+md:px-24
 
 py-32
 
@@ -71,27 +82,14 @@ py-32
 
 >
 
-<div
-className="
-max-w-[800px]
-mx-auto
-"
->
+<div className="max-w-[800px] mx-auto">
 
 <h1
-
 className="
-
 text-5xl
-
-md:text-6xl
-
 font-bold
-
 text-center
-
 "
-
 >
 
 Contact
@@ -105,17 +103,11 @@ Me
 </h1>
 
 <p
-
 className="
-
 text-center
-
 text-gray-400
-
 mt-6
-
 "
-
 >
 
 Send your question,
@@ -123,81 +115,105 @@ project request or message.
 
 </p>
 
-<form
+<Formik
 
-ref={form}
+initialValues={{
+name:'',
+email:'',
+message:''
+}}
+
+validationSchema={schema}
 
 onSubmit={sendEmail}
 
-className="
+>
 
-mt-16
+{
 
-space-y-6
+({
 
-"
+values,
+errors,
+touched,
+handleChange,
+handleSubmit
 
+})=>(
+
+<form
+ref={formRef}
+onSubmit={handleSubmit}
+className="mt-16 space-y-6"
 >
 
 <input
-
-type="text"
 
 name="name"
 
 placeholder="Your Name"
 
-required
+value={values.name}
+
+onChange={handleChange}
 
 className="
-
 w-full
-
 p-5
-
 rounded-2xl
-
 bg-white/5
-
-border
-
-border-white/10
-
-outline-none
-
 "
 
-/>
+>
+
+</input>
+
+{
+
+touched.name&&errors.name&&
+
+<p className="text-red-400">
+
+{errors.name}
+
+</p>
+
+}
 
 <input
 
-type="email"
-
 name="email"
+
+type="email"
 
 placeholder="Your Email"
 
-required
+value={values.email}
+
+onChange={handleChange}
 
 className="
-
 w-full
-
 p-5
-
 rounded-2xl
-
 bg-white/5
-
-border
-
-border-white/10
-
-outline-none
-
 "
 
-/>
+>
+
+</input>
+
+{
+
+touched.email&&errors.email&&
+
+<p className="text-red-400">
+
+{errors.email}
+
+</p>
+
+}
 
 <textarea
 
@@ -205,29 +221,32 @@ rows="6"
 
 name="message"
 
-placeholder="Write Your Message"
+placeholder="Write Message"
 
-required
+value={values.message}
+
+onChange={handleChange}
 
 className="
-
 w-full
-
 p-5
-
 rounded-2xl
-
 bg-white/5
-
-border
-
-border-white/10
-
-outline-none
-
 "
 
 ></textarea>
+
+{
+
+touched.message&&errors.message&&
+
+<p className="text-red-400">
+
+{errors.message}
+
+</p>
+
+}
 
 <button
 
@@ -241,15 +260,9 @@ w-full
 
 bg-blue-500
 
-hover:bg-blue-600
-
-duration-300
-
 py-5
 
 rounded-2xl
-
-font-semibold
 
 "
 
@@ -272,6 +285,12 @@ loading
 </button>
 
 </form>
+
+)
+
+}
+
+</Formik>
 
 </div>
 
