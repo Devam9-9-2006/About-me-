@@ -15,6 +15,9 @@ function Contact() {
       .email('Please enter a valid email')
       .required('Email is required'),
 
+    subject: Yup.string()
+      .required('Subject is required'),
+
     message: Yup.string()
       .min(10, 'Message must be at least 10 characters')
       .required('Message is required'),
@@ -31,12 +34,12 @@ function Contact() {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(() => {
-        alert('✅ Message sent successfully!')
+        alert('✅ Message Sent Successfully!')
         resetForm()
       })
       .catch((error) => {
         console.error(error)
-        alert('❌ Failed to send message. Please try again.')
+        alert('❌ Failed To Send Message')
       })
       .finally(() => {
         setLoading(false)
@@ -45,6 +48,7 @@ function Contact() {
 
   return (
     <section className="min-h-screen bg-[#050816] text-white px-6 md:px-10 lg:px-24 py-32">
+
       <div className="max-w-3xl mx-auto">
 
         <h1 className="text-5xl md:text-6xl font-bold text-center">
@@ -60,6 +64,7 @@ function Contact() {
           initialValues={{
             name: '',
             email: '',
+            subject: '',
             message: '',
           }}
           validationSchema={validationSchema}
@@ -69,14 +74,17 @@ function Contact() {
             values,
             errors,
             touched,
-            handleBlur,
             handleChange,
+            handleBlur,
             handleSubmit,
           }) => (
             <form
               onSubmit={handleSubmit}
               className="mt-16 space-y-6"
             >
+
+              {/* Name */}
+
               <div>
                 <input
                   type="text"
@@ -85,15 +93,17 @@ function Contact() {
                   value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full rounded-2xl bg-white/5 border border-white/10 p-5 outline-none focus:border-blue-500"
+                  className="w-full p-5 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-blue-500"
                 />
 
                 {touched.name && errors.name && (
-                  <p className="text-red-400 mt-2 text-sm">
+                  <p className="text-red-400 mt-2">
                     {errors.name}
                   </p>
                 )}
               </div>
+
+              {/* Email */}
 
               <div>
                 <input
@@ -103,15 +113,37 @@ function Contact() {
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full rounded-2xl bg-white/5 border border-white/10 p-5 outline-none focus:border-blue-500"
+                  className="w-full p-5 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-blue-500"
                 />
 
                 {touched.email && errors.email && (
-                  <p className="text-red-400 mt-2 text-sm">
+                  <p className="text-red-400 mt-2">
                     {errors.email}
                   </p>
                 )}
               </div>
+
+              {/* Subject */}
+
+              <div>
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Subject"
+                  value={values.subject}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className="w-full p-5 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-blue-500"
+                />
+
+                {touched.subject && errors.subject && (
+                  <p className="text-red-400 mt-2">
+                    {errors.subject}
+                  </p>
+                )}
+              </div>
+
+              {/* Message */}
 
               <div>
                 <textarea
@@ -121,11 +153,11 @@ function Contact() {
                   value={values.message}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full rounded-2xl bg-white/5 border border-white/10 p-5 outline-none focus:border-blue-500 resize-none"
+                  className="w-full p-5 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-blue-500 resize-none"
                 />
 
                 {touched.message && errors.message && (
-                  <p className="text-red-400 mt-2 text-sm">
+                  <p className="text-red-400 mt-2">
                     {errors.message}
                   </p>
                 )}
@@ -134,14 +166,17 @@ function Contact() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-2xl bg-blue-500 py-4 font-semibold transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full bg-blue-500 hover:bg-blue-600 duration-300 py-5 rounded-2xl font-semibold"
               >
                 {loading ? 'Sending...' : 'Send Message'}
               </button>
+
             </form>
           )}
         </Formik>
+
       </div>
+
     </section>
   )
 }
