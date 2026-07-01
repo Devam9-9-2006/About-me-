@@ -7,12 +7,12 @@ from 'react-router-dom'
 
 import Navbar from './components/Navbar'
 
-import Home from './components/Home'
-import About from './components/About'
-import Education from './components/Education'
-import Experience from './components/Experience'
-import Project from './components/Project'
-import Contact from './components/Contact'
+import Home from './pages/Home'
+import About from './pages/About'
+import Education from './pages/Education'
+import Experience from './pages/Experience'
+import Project from './pages/Project'
+import Contact from './pages/Contact'
 
 function App() {
 
