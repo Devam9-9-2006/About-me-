@@ -1,328 +1,116 @@
+import { useEffect, useState } from "react";
+
 function About() {
+  const [skills, setSkills] = useState([]);
 
-const cards = [
-{
-icon:'🎓',
-title:'Education',
-value:'B.Tech AI & DS'
-},
-{
-icon:'💼',
-title:'Experience',
-value:'Web Development'
-},
-{
-icon:'🚀',
-title:'Projects',
-value:'Portfolio & React Apps'
-}
-]
+  useEffect(() => {
+    const storedSkills =
+      JSON.parse(localStorage.getItem("skills")) || [];
 
-return (
+    setSkills(storedSkills);
+  }, []);
 
-<section
+  return (
+    <section className="min-h-screen bg-[#050816] text-white py-28 px-6 md:px-12 lg:px-24">
 
-className="
+      {/* Heading */}
 
-min-h-screen
+      <div className="text-center">
 
-bg-[#050816]
+        <p className="uppercase tracking-[8px] text-blue-400">
+          About Me
+        </p>
 
-text-white
+        <h1 className="text-5xl md:text-6xl font-bold mt-4">
+          Who <span className="text-blue-400">Am I?</span>
+        </h1>
 
-px-6
+      </div>
 
-md:px-10
+      {/* About */}
 
-lg:px-24
+      <div className="grid lg:grid-cols-2 gap-16 mt-20 items-center">
 
-py-32
+        <div>
 
-flex
+          <h2 className="text-3xl font-bold mb-6">
+            Hi, I'm Devam Panchal 👋
+          </h2>
 
-flex-col
+          <p className="text-gray-400 leading-8">
+            I am a Computer Engineering student passionate about
+            Web Development, Artificial Intelligence, and Machine
+            Learning. I enjoy building responsive websites,
+            dynamic web applications, and solving real-world
+            problems through technology.
+          </p>
 
-lg:flex-row
+          <p className="text-gray-400 leading-8 mt-6">
+            I completed my Diploma in Computer Engineering from
+            LJ Polytechnic and I am currently pursuing my
+            Bachelor's Degree in Artificial Intelligence &
+            Data Science at JG University.
+          </p>
 
-items-center
+          <div className="grid grid-cols-2 gap-6 mt-10">
 
-justify-between
+            <div className="bg-slate-900 rounded-xl p-5">
+              <h3 className="text-blue-400 font-semibold">
+                Location
+              </h3>
 
-gap-20
+              <p className="text-gray-300 mt-2">
+                Ahmedabad, India
+              </p>
+            </div>
 
-"
+            <div className="bg-slate-900 rounded-xl p-5">
+              <h3 className="text-blue-400 font-semibold">
+                Experience
+              </h3>
 
->
+              <p className="text-gray-300 mt-2">
+                React Developer Intern
+              </p>
+            </div>
 
-<div
+          </div>
 
-className="
+        </div>
 
-w-full
+        {/* Skills */}
 
-lg:w-[40%]
+        <div>
 
-flex
+          <h2 className="text-3xl font-bold mb-8">
+            My Skills
+          </h2>
 
-justify-center
+          <div className="flex flex-wrap gap-4">
 
-"
+            {skills.length > 0 ? (
+              skills.map((skill) => (
+                <span
+                  key={skill.id}
+                  className="bg-blue-600 px-5 py-3 rounded-full"
+                >
+                  {skill.name}
+                </span>
+              ))
+            ) : (
+              <p className="text-gray-400">
+                No skills added yet.
+              </p>
+            )}
 
->
+          </div>
 
-<div
+        </div>
 
-className="
+      </div>
 
-w-[240px]
-
-h-[240px]
-
-md:w-[320px]
-
-md:h-[320px]
-
-rounded-full
-
-bg-gradient-to-br
-
-from-blue-500
-
-to-blue-900
-
-flex
-
-items-center
-
-justify-center
-
-text-[90px]
-
-md:text-[130px]
-
-font-bold
-
-shadow-[0_0_120px_rgba(59,130,246,.35)]
-
-hover:scale-105
-
-duration-500
-
-"
-
->
-
-D
-
-</div>
-
-</div>
-
-<div
-
-className="
-
-w-full
-
-lg:w-[60%]
-
-"
-
->
-
-<p
-
-className="
-
-text-blue-400
-
-tracking-[6px]
-
-text-sm
-
-"
-
->
-
-ABOUT ME
-
-</p>
-
-<h1
-
-className="
-
-text-5xl
-
-md:text-6xl
-
-lg:text-7xl
-
-font-bold
-
-mt-6
-
-leading-tight
-
-"
-
->
-
-Turning Ideas Into
-
-<span className="text-blue-400">
-
-Modern Experiences
-
-</span>
-
-</h1>
-
-<p
-
-className="
-
-mt-10
-
-text-gray-400
-
-leading-8
-
-md:leading-10
-
-text-base
-
-md:text-lg
-
-"
-
->
-
-Hello, I'm Devam — a passionate
-B.Tech student specializing in
-Artificial Intelligence & Data Science
-with strong interest in frontend
-development and modern UI.
-
-I enjoy creating premium digital
-experiences and transforming ideas
-into modern interfaces.
-
-My journey expanded from web
-technologies into React, design
-systems and intelligent solutions.
-
-I continuously improve through
-learning, projects and practical
-development.
-
-My goal is to become a developer
-capable of building impactful
-technology and solving real-world
-problems.
-
-</p>
-
-<div
-
-className="
-
-grid
-
-grid-cols-1
-
-md:grid-cols-2
-
-xl:grid-cols-3
-
-gap-6
-
-mt-16
-
-"
-
->
-
-{
-
-cards.map((card)=>(
-
-<div
-
-key={card.title}
-
-className="
-
-bg-white/5
-
-backdrop-blur-xl
-
-rounded-[30px]
-
-p-8
-
-border
-
-border-white/10
-
-hover:-translate-y-2
-
-duration-500
-
-"
-
->
-
-<h3
-
-className="
-
-text-blue-400
-
-text-2xl
-
-"
-
->
-
-{card.icon}
-
-{' '}
-
-{card.title}
-
-</h3>
-
-<p
-
-className="
-
-mt-5
-
-text-gray-300
-
-"
-
->
-
-{card.value}
-
-</p>
-
-</div>
-
-))
-
+    </section>
+  );
 }
 
-</div>
-
-</div>
-
-</section>
-
-)
-
-}
-
-export default About
+export default About;

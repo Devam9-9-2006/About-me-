@@ -1,97 +1,99 @@
 import {
-BrowserRouter,
-Routes,
-Route
-}
-from 'react-router-dom'
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
-import Navbar from './components/Navbar'
+import Navbar from "./components/Navbar";
 
-import Home from './pages/Home'
-import About from './pages/About'
-import Education from './pages/Education'
-import Experience from './pages/Experience'
-import Project from './pages/Project'
-import Contact from './pages/Contact'
+// Portfolio Pages
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Skills from "./pages/skills";
+import Education from "./pages/Education";
+import Experience from "./pages/Experience";
+import Project from "./pages/Project";
+import Contact from "./pages/Contact";
 
-function App() {
+// Admin Pages
+import Login from "./pages/Admin/Login";
+import DashboardLayout from "./pages/Admin/DashboardLayout";
+import Dashboard from "./pages/Admin/Dashboard";
+import AdminProject from "./pages/Admin/AdminProject";
+import AdminEducation from "./pages/Admin/Education";
+import AdminExperience from "./pages/Admin/Experience";
+import AdminSkills from "./pages/Admin/Skills";
 
-return (
+function Layout() {
+  const location = useLocation();
 
-<BrowserRouter>
+  const hideNavbar =
+    location.pathname.startsWith("/admin") ||
+    location.pathname === "/login";
 
-<div
+  return (
+    <div className="min-h-screen bg-[#050816] text-white">
+      {!hideNavbar && <Navbar />}
 
-className="
+      <div className={!hideNavbar ? "pt-24" : ""}>
+        <Routes>
 
-min-h-screen
+          {/* Portfolio */}
 
-overflow-x-hidden
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/projects" element={<Project />} />
+          <Route path="/contact" element={<Contact />} />
 
-bg-[#050816]
+          {/* Login */}
 
-text-white
+          <Route path="/login" element={<Login />} />
 
-"
+          {/* Admin */}
 
->
+          <Route path="/admin" element={<DashboardLayout />}>
+            <Route index element={<Dashboard />} />
 
-<Navbar />
+            <Route
+              path="dashboard"
+              element={<Dashboard />}
+            />
 
-<div
+            <Route
+              path="projects"
+              element={<AdminProject />}
+            />
 
-className="
+            <Route
+              path="education"
+              element={<AdminEducation />}
+            />
 
-pt-32
+            <Route
+              path="experience"
+              element={<AdminExperience />}
+            />
 
-md:pt-24
+            <Route
+              path="skills"
+              element={<AdminSkills />}
+            />
+          </Route>
 
-"
-
->
-
-<Routes>
-
-<Route
-path="/"
-element={<Home />}
-/>
-
-<Route
-path="/about"
-element={<About />}
-/>
-
-<Route
-path="/education"
-element={<Education />}
-/>
-
-<Route
-path="/experience"
-element={<Experience />}
-/>
-
-<Route
-path="/projects"
-element={<Project />}
-/>
-
-<Route
-path="/contact"
-element={<Contact />}
-/>
-
-</Routes>
-
-</div>
-
-</div>
-
-</BrowserRouter>
-
-)
-
+        </Routes>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Layout />
+    </BrowserRouter>
+  );
+}

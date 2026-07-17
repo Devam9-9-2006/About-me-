@@ -1,463 +1,122 @@
-function Projects() {
+import { useEffect, useState } from "react";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
-return (
+function Project() {
+  const [projects, setProjects] = useState([]);
 
-<section
+  useEffect(() => {
+    const data =
+      JSON.parse(localStorage.getItem("projects")) || [];
 
-className="
+    setProjects(data);
+  }, []);
 
-min-h-screen
+  return (
+    <section className="min-h-screen bg-[#050816] text-white py-28 px-6 md:px-12 lg:px-24">
 
-bg-[#050816]
+      {/* Heading */}
 
-text-white
+      <div className="text-center">
 
-px-6
+        <p className="text-blue-400 tracking-[8px] uppercase">
+          My Work
+        </p>
 
-md:px-12
+        <h1 className="text-5xl md:text-6xl font-bold mt-4">
+          Featured <span className="text-blue-400">Projects</span>
+        </h1>
 
-lg:px-24
+        <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+          Here are some of the projects I have developed using React,
+          JavaScript, Python, Machine Learning and modern web
+          technologies.
+        </p>
 
-py-32
+      </div>
 
-"
+      {/* Projects */}
 
->
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
 
-<div className="text-center">
+        {projects.length > 0 ? (
 
-<p
-className="
-text-blue-400
-tracking-[6px]
-"
->
+          projects.map((project) => (
 
-MY WORK
+            <div
+              key={project.id}
+              className="bg-slate-900 rounded-2xl overflow-hidden shadow-lg hover:scale-105 duration-300"
+            >
 
-</p>
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-56 object-cover"
+              />
 
-<h1
-className="
+              <div className="p-6">
 
-text-5xl
+                <h2 className="text-2xl font-bold">
+                  {project.title}
+                </h2>
 
-md:text-6xl
+                <p className="text-gray-400 mt-4">
+                  {project.description}
+                </p>
 
-lg:text-7xl
+                <p className="text-blue-400 mt-4 text-sm">
+                  {project.tech}
+                </p>
 
-font-bold
+                <div className="flex gap-4 mt-8">
 
-mt-5
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 bg-gray-800 hover:bg-gray-700 py-3 rounded-xl"
+                  >
+                    <FaGithub />
+                    GitHub
+                  </a>
 
-"
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 py-3 rounded-xl"
+                  >
+                    <FaExternalLinkAlt />
+                    Live
+                  </a>
 
->
+                </div>
 
-Featured
+              </div>
 
-<span className="text-blue-400">
+            </div>
 
-Projects
+          ))
 
-</span>
+        ) : (
 
-</h1>
+          <div className="col-span-3 text-center">
 
-</div>
+            <h2 className="text-3xl font-bold text-gray-300">
+              No Projects Added
+            </h2>
 
-<div
+            <p className="text-gray-500 mt-4">
+              Add projects from the Admin Panel.
+            </p>
 
-className="
+          </div>
 
-grid
+        )}
 
-grid-cols-1
+      </div>
 
-md:grid-cols-2
-
-xl:grid-cols-3
-
-gap-8
-
-mt-20
-
-"
-
->
-
-<div
-
-className="
-
-bg-white/5
-
-backdrop-blur-xl
-
-rounded-[30px]
-
-p-8
-
-hover:-translate-y-3
-
-duration-500
-
-border
-
-border-white/10
-
-"
-
->
-
-<div className="text-5xl text-blue-400/20">
-01
-</div>
-
-<h2 className="text-3xl mt-6">
-
-Portfolio Website
-
-</h2>
-
-<p className="mt-6 text-gray-400 leading-8">
-
-Modern portfolio website built
-using React with animations,
-responsive design and premium UI.
-
-</p>
-
-<div
-
-className="
-
-flex
-
-flex-col
-
-sm:flex-row
-
-gap-4
-
-mt-10
-
-"
-
->
-
-<a
-
-href="https://github.com/Devam9-9-2006"
-
-target="_blank"
-
-className="
-
-bg-blue-500
-
-text-center
-
-py-3
-
-rounded-xl
-
-hover:scale-105
-
-duration-300
-
-"
-
->
-
-GitHub
-
-</a>
-
-<a
-
-href="https://about-me-chi-roan.vercel.app/"
-
-target="_blank"
-
-className="
-
-border
-
-border-blue-400
-
-text-center
-
-py-3
-
-rounded-xl
-
-hover:bg-blue-500
-
-duration-300
-
-"
-
->
-
-Live Demo
-
-</a>
-
-</div>
-
-</div>
-
-<div
-
-className="
-
-bg-white/5
-
-backdrop-blur-xl
-
-rounded-[30px]
-
-p-8
-
-hover:-translate-y-3
-
-duration-500
-
-border
-
-border-white/10
-
-"
-
->
-
-<div className="text-5xl text-blue-400/20">
-02
-</div>
-
-<h2 className="text-3xl mt-6">
-
-Startup Company Website
-
-</h2>
-
-<p className="mt-6 text-gray-400 leading-8">
-
-Premium business website with
-responsive design and modern
-UI experience.
-
-</p>
-
-<div
-
-className="
-
-flex
-
-flex-col
-
-sm:flex-row
-
-gap-4
-
-mt-10
-
-"
-
->
-
-<a
-
-href="https://github.com/Devam9-9-2006"
-
-target="_blank"
-
-className="
-
-bg-blue-500
-
-text-center
-
-py-3
-
-rounded-xl
-
-hover:scale-105
-
-duration-300
-
-"
-
->
-
-GitHub
-
-</a>
-
-<a
-
-href="https://elevate-labs-pied.vercel.app/"
-
-target="_blank"
-
-className="
-
-border
-
-border-blue-400
-
-text-center
-
-py-3
-
-rounded-xl
-
-hover:bg-blue-500
-
-duration-300
-
-"
-
->
-
-Live Demo
-
-</a>
-
-</div>
-
-</div>
-
-<div
-
-className="
-
-bg-white/5
-
-backdrop-blur-xl
-
-rounded-[30px]
-
-p-8
-
-hover:-translate-y-3
-
-duration-500
-
-border
-
-border-white/10
-
-"
-
->
-
-<div className="text-5xl text-blue-400/20">
-03
-</div>
-
-<h2 className="text-3xl mt-6">
-
-Coffee Website
-
-</h2>
-
-<p className="mt-6 text-gray-400 leading-8">
-
-Interactive React website with
-smooth animations and fully
-responsive design.
-
-</p>
-
-<div
-
-className="
-
-flex
-
-flex-col
-
-sm:flex-row
-
-gap-4
-
-mt-10
-
-"
-
->
-
-<a
-
-href="https://github.com/Devam9-9-2006"
-
-target="_blank"
-
-className="
-
-bg-blue-500
-
-text-center
-
-py-3
-
-rounded-xl
-
-hover:scale-105
-
-duration-300
-
-"
-
->
-
-GitHub
-
-</a>
-
-<a
-
-href="https://cafe-website-gkxschmuo-devam-999.vercel.app/"
-
-target="_blank"
-
-className="
-
-border
-
-border-blue-400
-
-text-center
-
-py-3
-
-rounded-xl
-
-hover:bg-blue-500
-
-duration-300
-
-"
-
->
-
-Live Demo
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-)
-
+    </section>
+  );
 }
 
-export default Projects
+export default Project;
