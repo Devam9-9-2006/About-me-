@@ -1,15 +1,32 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+
 function Project() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    const data =
-      JSON.parse(localStorage.getItem("projects")) || [];
-
-    setProjects(data);
+    fetchProjects();
   }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const querySnapshot = await getDocs(
+        collection(db, "projects")
+      );
+
+      const projectList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      setProjects(projectList);
+    } catch (error) {
+      console.error("Error loading projects:", error);
+    }
+  };
 
   return (
     <section className="min-h-screen bg-[#050816] text-white py-28 px-6 md:px-12 lg:px-24">
@@ -47,11 +64,13 @@ function Project() {
               className="bg-slate-900 rounded-2xl overflow-hidden shadow-lg hover:scale-105 duration-300"
             >
 
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-56 object-cover"
-              />
+              {project.image && (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-56 object-cover"
+                />
+              )}
 
               <div className="p-6">
 

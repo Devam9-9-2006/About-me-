@@ -1,407 +1,114 @@
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+
 function Experience() {
+  const [experience, setExperience] = useState([]);
 
-const internshipSkills = [
-'React',
-'HTML',
-'CSS',
-'JavaScript',
-'Responsive UI',
-'Debugging'
-]
+  useEffect(() => {
+    fetchExperience();
+  }, []);
 
-const fresherSkills = [
-'Portfolio',
-'Projects',
-'Problem Solving',
-'UI Design',
-'AI Learning',
-'Growth'
-]
+  const fetchExperience = async () => {
+    try {
+      const querySnapshot = await getDocs(
+        collection(db, "experience")
+      );
 
-return (
+      const experienceList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-<section
+      setExperience(experienceList);
+    } catch (error) {
+      console.error("Error loading experience:", error);
+    }
+  };
 
-className="
+  return (
+    <section className="min-h-screen bg-[#050816] text-white px-6 md:px-10 lg:px-24 py-32">
 
-min-h-screen
+      {/* Heading */}
 
-bg-[#050816]
+      <div className="text-center">
 
-text-white
+        <p className="text-blue-400 tracking-[6px] text-sm uppercase">
+          My Experience
+        </p>
 
-px-6
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mt-5">
+          Experience <span className="text-blue-400">& Internship</span>
+        </h1>
 
-md:px-10
+        <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+          My professional journey, internships, and practical experience
+          that helped me improve my development skills.
+        </p>
 
-lg:px-24
+      </div>
 
-py-32
+      {/* Experience Cards */}
 
-"
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mt-20">
 
->
+        {experience.length > 0 ? (
 
-<div className="text-center">
+          experience.map((item) => (
 
-<p
+            <div
+              key={item.id}
+              className="bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-8 hover:-translate-y-2 duration-300"
+            >
 
-className="
+              <div className="text-5xl">
+                💼
+              </div>
 
-text-blue-400
+              <h2 className="text-3xl font-bold mt-6">
+                {item.role}
+              </h2>
 
-tracking-[6px]
+              <h4 className="text-blue-400 mt-4">
+                {item.company}
+              </h4>
 
-text-sm
+              <p className="text-green-400 mt-2">
+                {item.duration}
+              </p>
 
-"
+              <p className="text-gray-400 mt-2">
+                {item.location}
+              </p>
 
->
+              <p className="leading-8 text-gray-400 mt-8">
+                {item.description}
+              </p>
 
-MY EXPERIENCE
+            </div>
 
-</p>
+          ))
 
-<h1
+        ) : (
 
-className="
+          <div className="col-span-2 text-center">
 
-text-5xl
+            <h2 className="text-3xl font-bold text-gray-300">
+              No Experience Added
+            </h2>
 
-md:text-6xl
+            <p className="text-gray-500 mt-4">
+              Add your experience from the Admin Panel.
+            </p>
 
-lg:text-7xl
+          </div>
 
-font-bold
+        )}
 
-mt-5
+      </div>
 
-"
-
->
-
-Experience
-
-<span className="text-blue-400">
-
-& Internship
-
-</span>
-
-</h1>
-
-</div>
-
-<div
-
-className="
-
-grid
-
-grid-cols-1
-
-xl:grid-cols-2
-
-gap-8
-
-mt-20
-
-"
-
->
-
-<div
-
-className="
-
-bg-white/5
-
-backdrop-blur-xl
-
-rounded-[30px]
-
-p-8
-
-md:p-10
-
-border
-
-border-white/10
-
-hover:-translate-y-2
-
-duration-500
-
-"
-
->
-
-<div className="text-5xl">
-💼
-</div>
-
-<h2
-
-className="
-
-text-3xl
-
-md:text-4xl
-
-mt-6
-
-"
-
->
-
-Web Development Internship
-
-</h2>
-
-<h4
-
-className="
-
-mt-4
-
-text-blue-400
-
-"
-
->
-
-Frontend • React • UI Development
-
-</h4>
-
-<p
-
-className="
-
-mt-8
-
-leading-8
-
-text-gray-400
-
-"
-
->
-
-Completed practical training in
-modern web development focused
-on responsive websites, UI design
-and frontend architecture.
-
-Worked with reusable React
-components and improved real
-development workflow experience.
-
-</p>
-
-<div
-
-className="
-
-flex
-
-flex-wrap
-
-gap-3
-
-mt-10
-
-"
-
->
-
-{
-
-internshipSkills.map((skill)=>(
-
-<span
-
-key={skill}
-
-className="
-
-px-5
-
-py-3
-
-rounded-full
-
-bg-blue-500/15
-
-text-blue-300
-
-text-sm
-
-"
-
->
-
-{skill}
-
-</span>
-
-))
-
+    </section>
+  );
 }
 
-</div>
-
-</div>
-
-<div
-
-className="
-
-bg-white/5
-
-backdrop-blur-xl
-
-rounded-[30px]
-
-p-8
-
-md:p-10
-
-border
-
-border-white/10
-
-hover:-translate-y-2
-
-duration-500
-
-"
-
->
-
-<div className="text-5xl">
-🚀
-</div>
-
-<h2
-
-className="
-
-text-3xl
-
-md:text-4xl
-
-mt-6
-
-"
-
->
-
-Fresher Developer Journey
-
-</h2>
-
-<h4
-
-className="
-
-mt-4
-
-text-blue-400
-
-"
-
->
-
-Learning • Building • Growing
-
-</h4>
-
-<p
-
-className="
-
-mt-8
-
-leading-8
-
-text-gray-400
-
-"
-
->
-
-Building personal and academic
-projects while continuously
-improving development skills.
-
-Focused on creating modern UI,
-learning frontend technologies
-and preparing for professional
-software opportunities.
-
-</p>
-
-<div
-
-className="
-
-flex
-
-flex-wrap
-
-gap-3
-
-mt-10
-
-"
-
->
-
-{
-
-fresherSkills.map((skill)=>(
-
-<span
-
-key={skill}
-
-className="
-
-px-5
-
-py-3
-
-rounded-full
-
-bg-blue-500/15
-
-text-blue-300
-
-text-sm
-
-"
-
->
-
-{skill}
-
-</span>
-
-))
-
-}
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-)
-
-}
-
-export default Experience
+export default Experience;

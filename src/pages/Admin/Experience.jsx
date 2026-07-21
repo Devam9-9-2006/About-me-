@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
 import { FaEdit, FaTrash, FaBriefcase } from "react-icons/fa";
 
+import { db } from "../../firebase";
+
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
+
 function AdminExperience() {
   const [experience, setExperience] = useState([]);
-
   const [editingId, setEditingId] = useState(null);
 
   const [form, setForm] = useState({
@@ -15,45 +25,61 @@ function AdminExperience() {
   });
 
   useEffect(() => {
-    const data =
-      JSON.parse(localStorage.getItem("experience")) || [];
-
-    setExperience(data);
+    fetchExperience();
   }, []);
 
-  const saveExperience = (data) => {
-    localStorage.setItem("experience", JSON.stringify(data));
-    setExperience(data);
+  const fetchExperience = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "experience"));
+
+      const experienceList = querySnapshot.docs.map((document) => ({
+        id: document.id,
+        ...document.data(),
+      }));
+
+      setExperience(experienceList);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (editingId) {
-      const updated = experience.map((item) =>
-        item.id === editingId
-          ? { id: editingId, ...form }
-          : item
-      );
+    try {
+      if (editingId) {
+        await updateDoc(doc(db, "experience", editingId), {
+          company: form.company,
+          role: form.role,
+          duration: form.duration,
+          location: form.location,
+          description: form.description,
+        });
 
-      saveExperience(updated);
-      setEditingId(null);
-    } else {
-      const newExperience = {
-        id: Date.now(),
-        ...form,
-      };
+        setEditingId(null);
+      } else {
+        await addDoc(collection(db, "experience"), {
+          company: form.company,
+          role: form.role,
+          duration: form.duration,
+          location: form.location,
+          description: form.description,
+        });
+      }
 
-      saveExperience([...experience, newExperience]);
+      setForm({
+        company: "",
+        role: "",
+        duration: "",
+        location: "",
+        description: "",
+      });
+
+      fetchExperience();
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
     }
-
-    setForm({
-      company: "",
-      role: "",
-      duration: "",
-      location: "",
-      description: "",
-    });
   };
 
   const editExperience = (item) => {
@@ -68,21 +94,21 @@ function AdminExperience() {
     });
   };
 
-  const deleteExperience = (id) => {
-    const updated = experience.filter(
-      (item) => item.id !== id
-    );
+  const deleteExperience = async (id) => {
+    if (!window.confirm("Delete this experience?")) return;
 
-    saveExperience(updated);
+    try {
+      await deleteDoc(doc(db, "experience", id));
+      fetchExperience();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div className="text-white">
 
-      {/* Heading */}
-
       <div className="flex justify-between items-center mb-10">
-
         <h1 className="text-4xl font-bold">
           Manage Experience
         </h1>
@@ -90,10 +116,7 @@ function AdminExperience() {
         <div className="bg-yellow-600 px-6 py-3 rounded-xl">
           Total Experience : {experience.length}
         </div>
-
       </div>
-
-      {/* Form */}
 
       <form
         onSubmit={handleSubmit}
@@ -157,14 +180,13 @@ function AdminExperience() {
         />
 
         <button
+          type="submit"
           className="bg-yellow-600 hover:bg-yellow-700 p-4 rounded-xl md:col-span-2"
         >
           {editingId ? "Update Experience" : "Add Experience"}
         </button>
 
       </form>
-
-      {/* Experience List */}
 
       <div className="grid lg:grid-cols-2 gap-8 mt-12">
 

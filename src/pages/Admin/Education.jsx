@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
 import { FaEdit, FaTrash, FaGraduationCap } from "react-icons/fa";
 
+import { db } from "../../firebase";
+
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
+
 function AdminEducation() {
   const [education, setEducation] = useState([]);
-
   const [editingId, setEditingId] = useState(null);
 
   const [form, setForm] = useState({
@@ -15,45 +25,63 @@ function AdminEducation() {
   });
 
   useEffect(() => {
-    const data =
-      JSON.parse(localStorage.getItem("education")) || [];
-
-    setEducation(data);
+    fetchEducation();
   }, []);
 
-  const saveEducation = (data) => {
-    localStorage.setItem("education", JSON.stringify(data));
-    setEducation(data);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (editingId) {
-      const updated = education.map((item) =>
-        item.id === editingId
-          ? { id: editingId, ...form }
-          : item
+  const fetchEducation = async () => {
+    try {
+      const querySnapshot = await getDocs(
+        collection(db, "education")
       );
 
-      saveEducation(updated);
-      setEditingId(null);
-    } else {
-      const newEducation = {
-        id: Date.now(),
-        ...form,
-      };
+      const data = querySnapshot.docs.map((document) => ({
+        id: document.id,
+        ...document.data(),
+      }));
 
-      saveEducation([...education, newEducation]);
+      setEducation(data);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    setForm({
-      degree: "",
-      institute: "",
-      duration: "",
-      percentage: "",
-      description: "",
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (editingId) {
+        await updateDoc(doc(db, "education", editingId), {
+          degree: form.degree,
+          institute: form.institute,
+          duration: form.duration,
+          percentage: form.percentage,
+          description: form.description,
+        });
+
+        setEditingId(null);
+      } else {
+        await addDoc(collection(db, "education"), {
+          degree: form.degree,
+          institute: form.institute,
+          duration: form.duration,
+          percentage: form.percentage,
+          description: form.description,
+        });
+      }
+
+      setForm({
+        degree: "",
+        institute: "",
+        duration: "",
+        percentage: "",
+        description: "",
+      });
+
+      fetchEducation();
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    }
   };
 
   const editEducation = (item) => {
@@ -68,21 +96,21 @@ function AdminEducation() {
     });
   };
 
-  const deleteEducation = (id) => {
-    const updated = education.filter(
-      (item) => item.id !== id
-    );
+  const deleteEducation = async (id) => {
+    if (!window.confirm("Delete this education record?")) return;
 
-    saveEducation(updated);
+    try {
+      await deleteDoc(doc(db, "education", id));
+      fetchEducation();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div className="text-white">
 
-      {/* Heading */}
-
       <div className="flex justify-between items-center mb-10">
-
         <h1 className="text-4xl font-bold">
           Manage Education
         </h1>
@@ -90,10 +118,7 @@ function AdminEducation() {
         <div className="bg-green-600 px-6 py-3 rounded-xl">
           Total Records : {education.length}
         </div>
-
       </div>
-
-      {/* Form */}
 
       <form
         onSubmit={handleSubmit}
@@ -169,14 +194,15 @@ function AdminEducation() {
         />
 
         <button
+          type="submit"
           className="bg-green-600 hover:bg-green-700 p-4 rounded-xl md:col-span-2"
         >
-          {editingId ? "Update Education" : "Add Education"}
+          {editingId
+            ? "Update Education"
+            : "Add Education"}
         </button>
 
       </form>
-
-      {/* Education List */}
 
       <div className="grid lg:grid-cols-2 gap-8 mt-12">
 
@@ -231,9 +257,7 @@ function AdminEducation() {
               </button>
 
               <button
-                onClick={() =>
-                  deleteEducation(item.id)
-                }
+                onClick={() => deleteEducation(item.id)}
                 className="flex-1 bg-red-600 hover:bg-red-700 py-3 rounded-lg flex justify-center items-center gap-2"
               >
                 <FaTrash />

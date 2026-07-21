@@ -1,14 +1,30 @@
 import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 function Education() {
   const [education, setEducation] = useState([]);
 
   useEffect(() => {
-    const data =
-      JSON.parse(localStorage.getItem("education")) || [];
-
-    setEducation(data);
+    fetchEducation();
   }, []);
+
+  const fetchEducation = async () => {
+    try {
+      const querySnapshot = await getDocs(
+        collection(db, "education")
+      );
+
+      const educationList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      setEducation(educationList);
+    } catch (error) {
+      console.error("Error loading education:", error);
+    }
+  };
 
   return (
     <section className="min-h-screen bg-[#050816] text-white px-6 md:px-10 lg:px-24 py-32">

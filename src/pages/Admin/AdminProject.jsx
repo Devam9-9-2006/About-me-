@@ -6,9 +6,19 @@ import {
   FaTrash,
 } from "react-icons/fa";
 
+import { db } from "../../firebase";
+
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
+
 function AdminProject() {
   const [projects, setProjects] = useState([]);
-
   const [editingId, setEditingId] = useState(null);
 
   const [form, setForm] = useState({
@@ -21,44 +31,64 @@ function AdminProject() {
   });
 
   useEffect(() => {
-    const data =
-      JSON.parse(localStorage.getItem("projects")) || [];
-
-    setProjects(data);
+    fetchProjects();
   }, []);
 
-  const saveProjects = (data) => {
-    localStorage.setItem("projects", JSON.stringify(data));
-    setProjects(data);
+  const fetchProjects = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "projects"));
+
+      const projectList = querySnapshot.docs.map((document) => ({
+        id: document.id,
+        ...document.data(),
+      }));
+
+      setProjects(projectList);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (editingId) {
-      const updated = projects.map((item) =>
-        item.id === editingId ? { id: editingId, ...form } : item
-      );
+    try {
+      if (editingId) {
+        await updateDoc(doc(db, "projects", editingId), {
+          title: form.title,
+          description: form.description,
+          tech: form.tech,
+          image: form.image,
+          github: form.github,
+          live: form.live,
+        });
 
-      saveProjects(updated);
-      setEditingId(null);
-    } else {
-      const newProject = {
-        id: Date.now(),
-        ...form,
-      };
+        setEditingId(null);
+      } else {
+        await addDoc(collection(db, "projects"), {
+          title: form.title,
+          description: form.description,
+          tech: form.tech,
+          image: form.image,
+          github: form.github,
+          live: form.live,
+        });
+      }
 
-      saveProjects([...projects, newProject]);
+      setForm({
+        title: "",
+        description: "",
+        tech: "",
+        image: "",
+        github: "",
+        live: "",
+      });
+
+      fetchProjects();
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
     }
-
-    setForm({
-      title: "",
-      description: "",
-      tech: "",
-      image: "",
-      github: "",
-      live: "",
-    });
   };
 
   const editProject = (project) => {
@@ -74,18 +104,19 @@ function AdminProject() {
     });
   };
 
-  const deleteProject = (id) => {
-    const updated = projects.filter(
-      (item) => item.id !== id
-    );
+  const deleteProject = async (id) => {
+    if (!window.confirm("Delete this project?")) return;
 
-    saveProjects(updated);
+    try {
+      await deleteDoc(doc(db, "projects", id));
+      fetchProjects();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div className="text-white">
-
-      {/* Heading */}
 
       <div className="flex justify-between items-center mb-10">
 
@@ -98,8 +129,6 @@ function AdminProject() {
         </div>
 
       </div>
-
-      {/* Form */}
 
       <form
         onSubmit={handleSubmit}
@@ -187,14 +216,13 @@ function AdminProject() {
         />
 
         <button
+          type="submit"
           className="bg-blue-600 hover:bg-blue-700 p-4 rounded-xl md:col-span-2"
         >
           {editingId ? "Update Project" : "Add Project"}
         </button>
 
       </form>
-
-      {/* Project List */}
 
       <div className="grid lg:grid-cols-2 gap-8 mt-12">
 
@@ -206,13 +234,11 @@ function AdminProject() {
           >
 
             {project.image && (
-
               <img
                 src={project.image}
                 alt={project.title}
                 className="w-full h-60 object-cover"
               />
-
             )}
 
             <div className="p-6">
@@ -264,9 +290,7 @@ function AdminProject() {
                 </button>
 
                 <button
-                  onClick={() =>
-                    deleteProject(project.id)
-                  }
+                  onClick={() => deleteProject(project.id)}
                   className="flex-1 bg-red-600 hover:bg-red-700 rounded-lg py-3 flex justify-center items-center gap-2"
                 >
                   <FaTrash />
