@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaEdit, FaTrash, FaTools } from "react-icons/fa";
 
 import { db } from "../../firebase";
@@ -22,23 +22,21 @@ function AdminSkills() {
     level: "",
   });
 
-  // Load skills from Firestore
-  useEffect(() => {
-    fetchSkills();
-  }, []);
-
   const fetchSkills = async () => {
-    const querySnapshot = await getDocs(collection(db, "skills"));
+    try {
+      const querySnapshot = await getDocs(collection(db, "skills"));
 
-    const skillList = querySnapshot.docs.map((document) => ({
-      id: document.id,
-      ...document.data(),
-    }));
+      const skillList = querySnapshot.docs.map((document) => ({
+        id: document.id,
+        ...document.data(),
+      }));
 
-    setSkills(skillList);
+      setSkills(skillList);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  // Add / Update Skill
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -49,9 +47,7 @@ function AdminSkills() {
 
     try {
       if (editingId) {
-        const skillRef = doc(db, "skills", editingId);
-
-        await updateDoc(skillRef, {
+        await updateDoc(doc(db, "skills", editingId), {
           name: form.name,
           category: form.category,
           level: form.level,
@@ -79,7 +75,6 @@ function AdminSkills() {
     }
   };
 
-  // Edit Skill
   const editSkill = (skill) => {
     setEditingId(skill.id);
 
@@ -90,7 +85,6 @@ function AdminSkills() {
     });
   };
 
-  // Delete Skill
   const deleteSkill = async (id) => {
     if (!window.confirm("Delete this skill?")) return;
 
@@ -109,12 +103,19 @@ function AdminSkills() {
           Manage Skills
         </h1>
 
-        <div className="bg-pink-600 px-6 py-3 rounded-xl font-semibold">
-          Total Skills : {skills.length}
+        <div className="flex gap-4">
+          <button
+            onClick={fetchSkills}
+            className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl font-semibold"
+          >
+            Load Skills
+          </button>
+
+          <div className="bg-pink-600 px-6 py-3 rounded-xl font-semibold">
+            Total Skills : {skills.length}
+          </div>
         </div>
       </div>
-
-      {/* Form */}
 
       <form
         onSubmit={handleSubmit}
@@ -131,6 +132,7 @@ function AdminSkills() {
             })
           }
           className="bg-slate-800 p-4 rounded-lg outline-none"
+          required
         />
 
         <input
@@ -144,6 +146,7 @@ function AdminSkills() {
             })
           }
           className="bg-slate-800 p-4 rounded-lg outline-none"
+          required
         />
 
         <input
@@ -159,6 +162,7 @@ function AdminSkills() {
             })
           }
           className="bg-slate-800 p-4 rounded-lg outline-none md:col-span-2"
+          required
         />
 
         <button
@@ -168,8 +172,6 @@ function AdminSkills() {
           {editingId ? "Update Skill" : "Add Skill"}
         </button>
       </form>
-
-      {/* Skills List */}
 
       <div className="grid lg:grid-cols-2 gap-8 mt-12">
         {skills.map((skill) => (
@@ -197,7 +199,6 @@ function AdminSkills() {
             <div className="mt-6">
               <div className="flex justify-between mb-2">
                 <span>Skill Level</span>
-
                 <span>{skill.level}%</span>
               </div>
 

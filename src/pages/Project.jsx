@@ -1,21 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
-
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
 function Project() {
   const [projects, setProjects] = useState([]);
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
   const fetchProjects = async () => {
     try {
-      const querySnapshot = await getDocs(
-        collection(db, "projects")
-      );
+      const querySnapshot = await getDocs(collection(db, "projects"));
 
       const projectList = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -32,7 +25,6 @@ function Project() {
     <section className="min-h-screen bg-[#050816] text-white py-28 px-6 md:px-12 lg:px-24">
 
       {/* Heading */}
-
       <div className="text-center">
 
         <p className="text-blue-400 tracking-[8px] uppercase">
@@ -49,21 +41,24 @@ function Project() {
           technologies.
         </p>
 
+        <button
+          onClick={fetchProjects}
+          className="mt-8 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg"
+        >
+          Load Projects
+        </button>
+
       </div>
 
       {/* Projects */}
-
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
 
         {projects.length > 0 ? (
-
           projects.map((project) => (
-
             <div
               key={project.id}
               className="bg-slate-900 rounded-2xl overflow-hidden shadow-lg hover:scale-105 duration-300"
             >
-
               {project.image && (
                 <img
                   src={project.image}
@@ -111,13 +106,9 @@ function Project() {
                 </div>
 
               </div>
-
             </div>
-
           ))
-
         ) : (
-
           <div className="col-span-3 text-center">
 
             <h2 className="text-3xl font-bold text-gray-300">
@@ -125,11 +116,10 @@ function Project() {
             </h2>
 
             <p className="text-gray-500 mt-4">
-              Add projects from the Admin Panel.
+              Click the "Load Projects" button to fetch your projects.
             </p>
 
           </div>
-
         )}
 
       </div>

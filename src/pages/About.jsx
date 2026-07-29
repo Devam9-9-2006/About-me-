@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function About() {
-  const [skills, setSkills] = useState([]);
-
-  useEffect(() => {
-    const storedSkills =
-      JSON.parse(localStorage.getItem("skills")) || [];
-
-    setSkills(storedSkills);
-  }, []);
+  const [skills] = useState(() => {
+    return JSON.parse(localStorage.getItem("skills")) || [];
+  });
 
   return (
     <section className="min-h-screen bg-[#050816] text-white py-28 px-6 md:px-12 lg:px-24">

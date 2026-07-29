@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaEdit, FaTrash, FaGraduationCap } from "react-icons/fa";
 
 import { db } from "../../firebase";
@@ -24,15 +24,9 @@ function AdminEducation() {
     description: "",
   });
 
-  useEffect(() => {
-    fetchEducation();
-  }, []);
-
   const fetchEducation = async () => {
     try {
-      const querySnapshot = await getDocs(
-        collection(db, "education")
-      );
+      const querySnapshot = await getDocs(collection(db, "education"));
 
       const data = querySnapshot.docs.map((document) => ({
         id: document.id,
@@ -109,14 +103,20 @@ function AdminEducation() {
 
   return (
     <div className="text-white">
-
       <div className="flex justify-between items-center mb-10">
-        <h1 className="text-4xl font-bold">
-          Manage Education
-        </h1>
+        <h1 className="text-4xl font-bold">Manage Education</h1>
 
-        <div className="bg-green-600 px-6 py-3 rounded-xl">
-          Total Records : {education.length}
+        <div className="flex gap-4">
+          <button
+            onClick={fetchEducation}
+            className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl"
+          >
+            Load Data
+          </button>
+
+          <div className="bg-green-600 px-6 py-3 rounded-xl">
+            Total Records : {education.length}
+          </div>
         </div>
       </div>
 
@@ -124,16 +124,12 @@ function AdminEducation() {
         onSubmit={handleSubmit}
         className="grid md:grid-cols-2 gap-5 bg-slate-900 p-8 rounded-2xl"
       >
-
         <input
           type="text"
           placeholder="Degree"
           value={form.degree}
           onChange={(e) =>
-            setForm({
-              ...form,
-              degree: e.target.value,
-            })
+            setForm({ ...form, degree: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800"
           required
@@ -144,10 +140,7 @@ function AdminEducation() {
           placeholder="Institute"
           value={form.institute}
           onChange={(e) =>
-            setForm({
-              ...form,
-              institute: e.target.value,
-            })
+            setForm({ ...form, institute: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800"
           required
@@ -158,10 +151,7 @@ function AdminEducation() {
           placeholder="Duration"
           value={form.duration}
           onChange={(e) =>
-            setForm({
-              ...form,
-              duration: e.target.value,
-            })
+            setForm({ ...form, duration: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800"
           required
@@ -172,10 +162,7 @@ function AdminEducation() {
           placeholder="CGPA / Percentage"
           value={form.percentage}
           onChange={(e) =>
-            setForm({
-              ...form,
-              percentage: e.target.value,
-            })
+            setForm({ ...form, percentage: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800"
         />
@@ -185,10 +172,7 @@ function AdminEducation() {
           placeholder="Description"
           value={form.description}
           onChange={(e) =>
-            setForm({
-              ...form,
-              description: e.target.value,
-            })
+            setForm({ ...form, description: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800 md:col-span-2"
         />
@@ -197,31 +181,23 @@ function AdminEducation() {
           type="submit"
           className="bg-green-600 hover:bg-green-700 p-4 rounded-xl md:col-span-2"
         >
-          {editingId
-            ? "Update Education"
-            : "Add Education"}
+          {editingId ? "Update Education" : "Add Education"}
         </button>
-
       </form>
 
       <div className="grid lg:grid-cols-2 gap-8 mt-12">
-
         {education.map((item) => (
-
           <div
             key={item.id}
             className="bg-slate-900 rounded-2xl p-6"
           >
-
             <div className="flex items-center gap-4">
-
               <FaGraduationCap
                 size={35}
                 className="text-green-400"
               />
 
               <div>
-
                 <h2 className="text-2xl font-bold">
                   {item.degree}
                 </h2>
@@ -229,9 +205,7 @@ function AdminEducation() {
                 <p className="text-green-400">
                   {item.institute}
                 </p>
-
               </div>
-
             </div>
 
             <p className="mt-4 text-gray-400">
@@ -247,7 +221,6 @@ function AdminEducation() {
             </p>
 
             <div className="flex gap-4 mt-6">
-
               <button
                 onClick={() => editEducation(item)}
                 className="flex-1 bg-yellow-500 hover:bg-yellow-600 py-3 rounded-lg flex justify-center items-center gap-2"
@@ -263,13 +236,9 @@ function AdminEducation() {
                 <FaTrash />
                 Delete
               </button>
-
             </div>
-
           </div>
-
         ))}
-
       </div>
 
       {education.length === 0 && (
@@ -277,7 +246,6 @@ function AdminEducation() {
           No Education Records Found
         </div>
       )}
-
     </div>
   );
 }

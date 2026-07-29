@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaEdit, FaTrash, FaBriefcase } from "react-icons/fa";
 
 import { db } from "../../firebase";
@@ -12,7 +12,7 @@ import {
   doc,
 } from "firebase/firestore";
 
-function AdminExperience() {
+function Experience() {
   const [experience, setExperience] = useState([]);
   const [editingId, setEditingId] = useState(null);
 
@@ -23,10 +23,6 @@ function AdminExperience() {
     location: "",
     description: "",
   });
-
-  useEffect(() => {
-    fetchExperience();
-  }, []);
 
   const fetchExperience = async () => {
     try {
@@ -107,14 +103,22 @@ function AdminExperience() {
 
   return (
     <div className="text-white">
-
       <div className="flex justify-between items-center mb-10">
         <h1 className="text-4xl font-bold">
           Manage Experience
         </h1>
 
-        <div className="bg-yellow-600 px-6 py-3 rounded-xl">
-          Total Experience : {experience.length}
+        <div className="flex gap-4">
+          <button
+            onClick={fetchExperience}
+            className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl"
+          >
+            Load Experience
+          </button>
+
+          <div className="bg-yellow-600 px-6 py-3 rounded-xl">
+            Total Experience : {experience.length}
+          </div>
         </div>
       </div>
 
@@ -122,7 +126,6 @@ function AdminExperience() {
         onSubmit={handleSubmit}
         className="grid md:grid-cols-2 gap-5 bg-slate-900 p-8 rounded-2xl"
       >
-
         <input
           type="text"
           placeholder="Company Name"
@@ -185,27 +188,21 @@ function AdminExperience() {
         >
           {editingId ? "Update Experience" : "Add Experience"}
         </button>
-
       </form>
 
       <div className="grid lg:grid-cols-2 gap-8 mt-12">
-
         {experience.map((item) => (
-
           <div
             key={item.id}
             className="bg-slate-900 rounded-2xl p-6"
           >
-
             <div className="flex items-center gap-4">
-
               <FaBriefcase
                 size={35}
                 className="text-yellow-400"
               />
 
               <div>
-
                 <h2 className="text-2xl font-bold">
                   {item.role}
                 </h2>
@@ -213,9 +210,7 @@ function AdminExperience() {
                 <p className="text-yellow-400">
                   {item.company}
                 </p>
-
               </div>
-
             </div>
 
             <p className="mt-4 text-gray-400">
@@ -231,7 +226,6 @@ function AdminExperience() {
             </p>
 
             <div className="flex gap-4 mt-6">
-
               <button
                 onClick={() => editExperience(item)}
                 className="flex-1 bg-blue-600 hover:bg-blue-700 py-3 rounded-lg flex justify-center items-center gap-2"
@@ -247,13 +241,9 @@ function AdminExperience() {
                 <FaTrash />
                 Delete
               </button>
-
             </div>
-
           </div>
-
         ))}
-
       </div>
 
       {experience.length === 0 && (
@@ -261,9 +251,8 @@ function AdminExperience() {
           No Experience Added Yet
         </div>
       )}
-
     </div>
   );
 }
 
-export default AdminExperience;
+export default Experience;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -29,10 +29,6 @@ function AdminProject() {
     github: "",
     live: "",
   });
-
-  useEffect(() => {
-    fetchProjects();
-  }, []);
 
   const fetchProjects = async () => {
     try {
@@ -119,31 +115,30 @@ function AdminProject() {
     <div className="text-white">
 
       <div className="flex justify-between items-center mb-10">
-
-        <h1 className="text-4xl font-bold">
-          Manage Projects
-        </h1>
+        <h1 className="text-4xl font-bold">Manage Projects</h1>
 
         <div className="bg-blue-600 px-6 py-3 rounded-xl">
           Total Projects : {projects.length}
         </div>
-
       </div>
+
+      <button
+        onClick={fetchProjects}
+        className="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-xl mb-8"
+      >
+        Load Projects
+      </button>
 
       <form
         onSubmit={handleSubmit}
         className="grid md:grid-cols-2 gap-5 bg-slate-900 p-8 rounded-2xl"
       >
-
         <input
           type="text"
           placeholder="Project Title"
           value={form.title}
           onChange={(e) =>
-            setForm({
-              ...form,
-              title: e.target.value,
-            })
+            setForm({ ...form, title: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800"
           required
@@ -154,10 +149,7 @@ function AdminProject() {
           placeholder="Technology Used"
           value={form.tech}
           onChange={(e) =>
-            setForm({
-              ...form,
-              tech: e.target.value,
-            })
+            setForm({ ...form, tech: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800"
           required
@@ -168,10 +160,7 @@ function AdminProject() {
           placeholder="Image URL"
           value={form.image}
           onChange={(e) =>
-            setForm({
-              ...form,
-              image: e.target.value,
-            })
+            setForm({ ...form, image: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800"
         />
@@ -181,10 +170,7 @@ function AdminProject() {
           placeholder="GitHub Link"
           value={form.github}
           onChange={(e) =>
-            setForm({
-              ...form,
-              github: e.target.value,
-            })
+            setForm({ ...form, github: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800"
         />
@@ -194,10 +180,7 @@ function AdminProject() {
           placeholder="Live Demo Link"
           value={form.live}
           onChange={(e) =>
-            setForm({
-              ...form,
-              live: e.target.value,
-            })
+            setForm({ ...form, live: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800 md:col-span-2"
         />
@@ -207,10 +190,7 @@ function AdminProject() {
           placeholder="Project Description"
           value={form.description}
           onChange={(e) =>
-            setForm({
-              ...form,
-              description: e.target.value,
-            })
+            setForm({ ...form, description: e.target.value })
           }
           className="p-4 rounded-lg bg-slate-800 md:col-span-2"
         />
@@ -221,18 +201,14 @@ function AdminProject() {
         >
           {editingId ? "Update Project" : "Add Project"}
         </button>
-
       </form>
 
       <div className="grid lg:grid-cols-2 gap-8 mt-12">
-
         {projects.map((project) => (
-
           <div
             key={project.id}
             className="bg-slate-900 rounded-2xl overflow-hidden"
           >
-
             {project.image && (
               <img
                 src={project.image}
@@ -242,7 +218,6 @@ function AdminProject() {
             )}
 
             <div className="p-6">
-
               <h2 className="text-2xl font-bold">
                 {project.title}
               </h2>
@@ -256,7 +231,6 @@ function AdminProject() {
               </p>
 
               <div className="flex gap-3 mt-6">
-
                 <a
                   href={project.github}
                   target="_blank"
@@ -276,11 +250,9 @@ function AdminProject() {
                   <FaExternalLinkAlt />
                   Live
                 </a>
-
               </div>
 
               <div className="flex gap-4 mt-6">
-
                 <button
                   onClick={() => editProject(project)}
                   className="flex-1 bg-yellow-500 hover:bg-yellow-600 rounded-lg py-3 flex justify-center items-center gap-2"
@@ -296,15 +268,10 @@ function AdminProject() {
                   <FaTrash />
                   Delete
                 </button>
-
               </div>
-
             </div>
-
           </div>
-
         ))}
-
       </div>
 
       {projects.length === 0 && (
@@ -312,7 +279,6 @@ function AdminProject() {
           No Projects Added Yet
         </div>
       )}
-
     </div>
   );
 }
